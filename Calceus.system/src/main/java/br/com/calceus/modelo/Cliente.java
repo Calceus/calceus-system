@@ -6,6 +6,7 @@ public class Cliente {
 	private int tipoCliente;
 	private char status;
 	private int idPessoa;
+	
 	public Cliente(int idCliente, int tipoCliente, char status, int idPessoa) {
 		this.idCliente = idCliente;
 		this.tipoCliente = tipoCliente;
