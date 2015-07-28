@@ -12,28 +12,27 @@ public class Estoque {
 	//Tabela TipoMovimentação
 	private int idTipoMovimentacao;
 	private String descricao;
-	
-	public Estoque(int idEstoque, Calendar dataMovimentacao, int idTipoMovimentacao, int idPedido) {
+	public Estoque(int idEstoque, Calendar dataMovimentacao, int idPedido, int idTipoMovimentacao, String descricao) {
 		this.idEstoque = idEstoque;
 		this.dataMovimentacao = dataMovimentacao;
-		this.idTipoMovimentacao = idTipoMovimentacao;
 		this.idPedido = idPedido;
+		this.idTipoMovimentacao = idTipoMovimentacao;
+		this.descricao = descricao;
 	}
-
 	public int getIdEstoque() {
 		return idEstoque;
 	}
-
 	public Calendar getDataMovimentacao() {
 		return dataMovimentacao;
 	}
-
+	public int getIdPedido() {
+		return idPedido;
+	}
 	public int getIdTipoMovimentacao() {
 		return idTipoMovimentacao;
 	}
-
-	public int getIdPedido() {
-		return idPedido;
+	public String getDescricao() {
+		return descricao;
 	}
 	
 	
