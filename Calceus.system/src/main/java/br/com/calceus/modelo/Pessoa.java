@@ -1,43 +1,67 @@
 package br.com.calceus.modelo;
 
-public class Pessoa {
+public abstract class Pessoa {
 
-	private int idPessoa;
-	private int cpf;
-	private int idade;
-	private char sexo;
-	private String nome;
-	private String rg;
-	private String email;
+	protected int idPessoa;
+	protected int cpf;
+	protected int idade;
+	protected char sexo;
+	protected String nome;
+	protected String rg;
+	protected String email;
 	public Pessoa(int idPessoa, int cpf, int idade, char sexo, String nome, String rg, String email) {
+        super(); 
 		this.idPessoa = idPessoa;
 		this.cpf = cpf;
 		this.idade = idade;
 		this.sexo = sexo;
 		this.nome = nome;
-		this.rg = rg;
+		this.rg = rg; 
 		this.email = email;
 	}
+	public Pessoa(){}
+	public void setCpf(int cpf) {
+		this.cpf = cpf;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+	public void setIdPessoa(int idPessoa) {
+		this.idPessoa = idPessoa;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
+	}
+
 	public int getIdPessoa() {
-		return idPessoa;
+		return this.idPessoa;
 	}
 	public int getCpf() {
-		return cpf;
+		return this.cpf;
 	}
 	public int getIdade() {
-		return idade;
+		return this.idade;
 	}
 	public char getSexo() {
-		return sexo;
+		return this.sexo;
 	}
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 	public String getRg() {
-		return rg;
+		return this.rg;
 	}
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	

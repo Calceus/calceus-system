@@ -2,7 +2,7 @@ package br.com.calceus.modelo;
 
 import java.util.Calendar;
 
-public class Funcionario {
+public class Funcionario extends Pessoa {
 
 	private int idFuncionario;
 	private String nomeFuncionario;
@@ -11,9 +11,8 @@ public class Funcionario {
 	private String serieCarteiraTrabalho;
 	private String numPIS;
 	private double salario;
-	private int idPessoa;
 	private int idCargo;
-	
+
 	public Funcionario(int idFuncionario, String nomeFuncionario, Calendar dataAdmissao, int numCarteiraTrabalho,
 			String serieCarteiraTrabalho, String numPIS, double salario, int idPessoa, int idCargo) {
 		super();
@@ -27,33 +26,43 @@ public class Funcionario {
 		this.idPessoa = idPessoa;
 		this.idCargo = idCargo;
 	}
+
+	
+
 	public int getIdFuncionario() {
 		return idFuncionario;
 	}
+
 	public String getNomeFuncionario() {
 		return nomeFuncionario;
 	}
+
 	public Calendar getDataAdmissao() {
 		return dataAdmissao;
 	}
+
 	public int getNumCarteiraTrabalho() {
 		return numCarteiraTrabalho;
 	}
+
 	public String getSerieCarteiraTrabalho() {
 		return serieCarteiraTrabalho;
 	}
+
 	public String getNumPIS() {
 		return numPIS;
 	}
+
 	public double getSalario() {
 		return salario;
 	}
+
 	public int getIdPessoa() {
 		return idPessoa;
 	}
+
 	public int getIdCargo() {
 		return idCargo;
 	}
-	
-	
+
 }
