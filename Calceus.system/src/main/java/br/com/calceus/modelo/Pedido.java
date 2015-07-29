@@ -1,6 +1,5 @@
 package br.com.calceus.modelo;
 
-import java.io.LineNumberInputStream;
 import java.util.Calendar;
 
 public class Pedido {
@@ -11,7 +10,7 @@ public class Pedido {
 	private double valorTotal;
 	private int idCliente;
 	private int posicaoLivre;;
-	private Pedido[] listaDePedidos;
+	private static Pedido[] listaDePedidos;
 
 	// Tabele ItemPedido
 	private int idItemPedido;
@@ -58,9 +57,10 @@ public class Pedido {
 		posicaoLivre++;
 	}
 
-	public Pedido consultaPedido(int numero) {
-         
-        	 return listaDePedidos[numero];
+	public static Pedido consultaPedido(int numero) {
+             Pedido achado = listaDePedidos[numero];
+       /// System.out.println();;
+			return achado;
     }
          
 

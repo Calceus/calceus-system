@@ -1,7 +1,5 @@
 package br.com.calceus.modelo;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 public class Cliente extends Pessoa implements Consultas {
 
 	private int idCliente;
