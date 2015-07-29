@@ -15,7 +15,7 @@ public class Funcionario extends Pessoa {
 
 	public Funcionario(int idFuncionario, String nomeFuncionario, Calendar dataAdmissao, int numCarteiraTrabalho,
 			String serieCarteiraTrabalho, String numPIS, double salario, int idPessoa, int idCargo) {
-		// super();
+
 		this.idFuncionario = idFuncionario;
 		this.nomeFuncionario = nomeFuncionario;
 		this.dataAdmissao = dataAdmissao;
@@ -66,6 +66,7 @@ public class Funcionario extends Pessoa {
 	@Override
 	public String toString() {
 
-		return "Funcionario " + this.getIdCargo() + " " +  this.getIdFuncionario();
+		return "Funcionario " + this.getIdCargo() + " " + this.getIdFuncionario();
 	}
+	
 }

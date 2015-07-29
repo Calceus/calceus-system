@@ -10,7 +10,7 @@ public abstract class Pessoa {
 	protected String rg;
 	protected String email;
 
-	public Pessoa(int idPessoa, int cpf, int idade, char sexo, String nome, String rg, String email) {
+	/*public Pessoa(int idPessoa, int cpf, int idade, char sexo, String nome, String rg, String email) {
 		this();
 		this.idPessoa = idPessoa;
 		this.cpf = cpf;
@@ -19,7 +19,7 @@ public abstract class Pessoa {
 		this.nome = nome;
 		this.rg = rg;
 		this.email = email;
-	}
+	}*/
 
 	public Pessoa() {
 	}
@@ -83,6 +83,8 @@ public abstract class Pessoa {
 		System.out.println(this.getIdPessoa());
 		System.out.println(this.getNome());
 		System.out.println(this.getCpf());
+		System.out.println(this.getIdade());
+		System.out.println(this.getSexo());
 		System.out.println(this.getSexo());
 		System.out.println(this.getEmail());
 	}

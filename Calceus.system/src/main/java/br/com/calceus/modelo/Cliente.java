@@ -1,6 +1,8 @@
 package br.com.calceus.modelo;
 
-public class Cliente extends Pessoa {
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
+public class Cliente extends Pessoa implements Consultas {
 
 	private int idCliente;
 	private int tipoCliente;
@@ -35,6 +37,29 @@ public class Cliente extends Pessoa {
 	@Override
 	public String toString() {
 		return "Cliente " + this.getTipoCliente();
+	}
+
+	@Override
+	public void consulta(int idProduto) {
+
+	}
+
+	@Override
+	public Pedido consultaPedido(int numero) {
+		return null;
+
+	}
+
+	@Override
+	public Produto consultaProduto(String nome) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Produto consultaproduto(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -36,6 +36,13 @@ public class Produto {
 	public int getIdCategoria() {
 		return idCategoria;
 	}
+	public void mostra(){
+		 this.getIdProduto();
+		 this.getIdCategoria();
+		 this.getNomeProduto();
+		 this.getValor();
+		
+	}
 	
 	
 
