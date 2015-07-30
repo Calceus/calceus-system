@@ -1,6 +1,8 @@
 package br.com.calceus.modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Pedido {
 
@@ -62,10 +64,13 @@ public class Pedido {
        /// System.out.println();;
 			return achado;
     }
+	
 	@Override
 	public String toString() {
 		
-		return "Pedido " + this.getIdPedido() + "\nData " + this.getDataPedido() + this.getValorTotal() 
+		SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+		
+		return "Pedido " + this.getIdPedido() + "\nData " + dataFormatada.format(getDataPedido().getTime()) +"\nValor: " +this.getValorTotal() 
 		+ "\nID Cliente " + this.getIdCliente();
 	}
          
