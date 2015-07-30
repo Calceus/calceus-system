@@ -20,4 +20,11 @@ public class AdicionaClientesFuncionarios {
 		return this.arrayDePessoas[posicao];
 
 	}
+	public void listaPessoas(){
+	
+		for(int i  = 0; i < this.arrayDePessoas.length; i++){
+		     System.out.println("Nome " + this.arrayDePessoas[i].getNome() + " Id " + this.arrayDePessoas[i].getIdPessoa());
+		}
+	
+	}
 }

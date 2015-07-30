@@ -37,27 +37,16 @@ public class Cliente extends Pessoa implements Consultas {
 		return "Cliente " + this.getTipoCliente();
 	}
 
-	@Override
-	public void consulta(int idProduto) {
-
-	}
-
+	
 	@Override
 	public Pedido consultaPedido(int numero) {
-		return null;
+		Pedido retorno =  Pedido.consultaPedido(numero);
+		return retorno; 
 
 	}
 
-	@Override
-	public Produto consultaProduto(String nome) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public Produto consultaproduto(int codigo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+	
 
 }

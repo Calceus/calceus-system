@@ -10,7 +10,7 @@ public class Pedido {
 	private double valorTotal;
 	private int idCliente;
 	private int posicaoLivre;;
-	private static Pedido[] listaDePedidos;
+	private static  Pedido[] listaDePedidos;
 
 	// Tabele ItemPedido
 	private int idItemPedido;
@@ -26,7 +26,7 @@ public class Pedido {
 		this.idItemPedido = idItemPedido;
 		this.idProduto = idProduto;
 	}
-
+    public Pedido(){}
 	public int getIdPedido() {
 		return idPedido;
 	}
@@ -53,8 +53,8 @@ public class Pedido {
 
 	public void adicionaPedido(Pedido novo) {
 
-		listaDePedidos[posicaoLivre] = novo;
-		posicaoLivre++;
+		Pedido.listaDePedidos[posicaoLivre] = novo;
+		this.posicaoLivre++;
 	}
 
 	public static Pedido consultaPedido(int numero) {
@@ -62,6 +62,12 @@ public class Pedido {
        /// System.out.println();;
 			return achado;
     }
+	@Override
+	public String toString() {
+		
+		return "Pedido " + this.getIdPedido() + "\nData " + this.getDataPedido() + this.getValorTotal() 
+		+ "\nID Cliente " + this.getIdCliente();
+	}
          
 
 	}
