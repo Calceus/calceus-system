@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 /**
- * PARA ACESSAR O BANCO COMO LOCALHOST EXECUTE O PASSO 4 SOMENTE E MUDE AS CONFIGURAÇÕES NO CÓDIGO
+ * PARA ACESSAR O BANCO COMO LOCALHOST EXECUTE O PASSO 4 SOMENTE E MUDE AS CONFIGURAï¿½ï¿½ES NO Cï¿½DIGO
 
 PARA DAR ACESSO AO BANCO DE DADOS EXTERNO
 
-1-Editar o arquivo de configuração do mysql
+1-Editar o arquivo de configuraï¿½ï¿½o do mysql
 
 	nano /etc/mysql/my.cnf
 
@@ -48,11 +48,11 @@ import br.com.calceus.banco.GerenciadorDeConexoes;
 
 public class TestaConexao {
 
-	// mudar para localhost onde está o IP e mudar o usuario e para root a senha do root
+	// mudar para localhost onde estï¿½ o IP e mudar o usuario e para root a senha do root
 	
 	public static void main(String[] args) throws SQLException {
 		
-		Connection conn = GerenciadorDeConexoes.getConnection("mysql", "192.168.2.27", "calceus", "calceus", "calceusdb");
+		Connection conn = GerenciadorDeConexoes.getConnection("mysql", "localhost", "calceus", "root", "camila");
 		
 		Statement st  = conn.createStatement();
 		boolean resultado = st.execute("select * from Cargo"); //boolean para ser tratado depois
