@@ -1,13 +1,17 @@
 package br.com.calceus.cadastro;
 
-import javax.annotation.ManagedBean;
+
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-@ManagedBean(value= "usuarioBean")
+
+@ManagedBean(name= "usuarioBean")
 @RequestScoped
 
 public class UsuarioBean {
+	
 	private String nome;
 	private String email;
 	private String senha;
