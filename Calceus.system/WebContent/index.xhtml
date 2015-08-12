@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 <title>Calceus Footwear</title>
 		<meta charset="utf-8" />
@@ -41,8 +42,10 @@
 								<div class="6u 12u(mobile)">
 
 									<!-- Banner Copy -->
-										<p>Bem-vindo à <b>Calceus Footwear</b>, nós temos os melhores modelos de calçados para as melhores pessoas </p>
-										<a href="#" class="button-big">Vá em frente, confira</a>
+										<p>Bem-vindo à <b>Calceus Footwear</b>, nós temos os melhores modelos de calçados para as melhores pessoas. Cadastre-se agora mesmo. </p>
+										<h:form>
+											<h:commandLink action="#{usuarioBean.novo}" class="button-big">Cadastro</h:commandLink>
+										</h:form>
 
 								</div>
 								<div class="6u 12u(mobile)">

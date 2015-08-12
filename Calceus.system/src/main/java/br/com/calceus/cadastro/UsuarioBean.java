@@ -17,17 +17,18 @@ public class UsuarioBean {
 	private String senha;
 	private String confirmaSenha;
 
-	public String operacao() {
-		return "resultado";
-
+	public String novo(){
+		
+		return "usuario";
 	}
+
 	public String salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		if(!this.senha.equalsIgnoreCase(this.confirmaSenha)){
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Senha confirmada incorretamente", ""));
 			return "usuario";
 		}
-		return "sucesso!";
+		return "sucesso";
 	}
 
 	public void setNome(String nome) {

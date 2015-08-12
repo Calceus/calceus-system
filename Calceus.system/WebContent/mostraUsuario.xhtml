@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="assets/css/ie/respond.min.js"></script><![endif]-->
+</h:head>
+<h:body>
+
+	<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<header id="header" class="container">
+						<div class="row">
+							<div class="12u">
+
+								<!-- Logo -->
+									<h1><a href="#" id="logo"><img src="images/calceus-logo-4.png"/></a></h1>
+
+								<!-- Nav -->
+									<nav id="nav">
+										<a href="index.html">Home</a>
+										<a href="empresa.html">Institucional</a>
+										<a href="masculino.html">Masculino</a>
+										<a href="feminino.html">Feminino</a>
+										<a href="infantil.html">Infantil</a>
+									</nav>
+
+							</div>
+						</div>
+					</header>
+				</div>
+
+			<!-- Content -->
+				<div id="content-wrapper">
+					<div id="content">
+						<div class="container">
+							<div class="row">
+								<div class="12u">
+
+									<!-- Main Content -->
+										<h1>Usuario Cadastrado</h1>
+										<p>
+											Nome: <h:outputText  value="#{usuarioBean.nome}"/>
+										</p>
+										<p>
+											Email: <h:outputLink value="mailto:#{usuarioBean.email}"><h:outputText  value="#{usuarioBean.email}"/></h:outputLink>
+										</p>
+										<p>
+											Senha: <h:outputText  value="#{usuarioBean.senha}"/>
+										</p>
+										<h:form>
+											<h:commandLink action="inicio" value="Início"/>
+										</h:form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="8u 12u(mobile)">
+
+								<!-- Links -->
+									<section>
+
+										<div>
+											<div class="row">
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><h2>Mapa do site</h2></li>
+														<li><a href="#">Home</a></li>
+														<li><a href="#">Empresa</a></li>
+														<li><a href="#">Masculino</a></li>
+														<li><a href="#">Feminino</a></li>
+														<li><a href="#">Infantil</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><h2>Parceiros</h2></li>
+														<li><a href="#">Anon Dev.com</a></li>
+														<li><a href="#">Loja.com</a></li>
+														<li><a href="#">Calceus.com.br</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><h2>Institucional</h2></li>
+														<li><a href="#">Sobre a Calceus</a></li>
+														<li><a href="#">Marcas Recomendadas</a></li>
+														<li><a href="#">Trabalhe Conosco</a></li>
+														<li><a href="#">Parcerias Internacionais</a></li>
+														<li><a href="#">Programas Trainne</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><h2>Duvidas</h2></li> 
+														<li><a href="#">Como comprar</a></li>
+														<li><a href="#">Sobre Entrega</a></li>
+														<li><a href="#">Política de Troca e Devoluções</a></li>
+														<li><a href="#">Política de Privacidade</a></li>
+														<li><a href="#">Nota fiscal Paulista</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</section>
+
+							</div>
+							
+					        <div class="4u 12u(mobile)">
+
+								<!-- Blurb -->
+									<section>
+									<div class="row">
+										<h2>Central de atendimento 4003-0000</h2>
+										<p>
+											Duvidas   sobre cadastro, Pedidos, formas de pagamento, prazos entrega?
+											Clique <a href="faq.html"><strong>aqui</strong></a> e tire suas dúvidas.
+										</p>
+										<section>
+										  <div class="row">
+										       <h2>Formas de pagamento</h2>
+										       <ul class="lista-pagamento">
+												 <li class="lista-pagamento-item"><img src = "images/brands/visa-logo-mini.png" alt = ""/></li>
+												 <li class="lista-pagamento-item"><img src = "images/brands/master-card-logo-mini.png" alt = ""/></li>
+												 <li class="lista-pagamento-item"><img src = "images/brands/amex-logo-mini.png" alt = ""/></li>
+												 <li class="lista-pagamento-item"><img src = "images/brands/boleto-mini.png" alt = ""/></li>
+										       </ul>
+										  </div>
+										</section>
+									</div>
+									</section>
+
+							</div> 
+						</div>
+					</footer>
+				</div>
+
+			<!-- Copyright -->
+				<div id="copyright">
+					<ul class="social copyright">
+						<li>CALCEUS. Todos os direitos reservados. | Design: <a href="">AnonDEV</a></li>
+						<li><a href="http://facebook.com/calceusfootwear">Facebook</a></li>
+						<li><a href="http://twitter.com/calceusfootwear">Twitter</a></li>
+						<li><a href="http://google.com/calceusfootwear">Google+</a></li>
+						<li><a href="http://instagram.com/calceusfootwear">Instagram</a></li>
+					</ul>
+				</div>
+
+		</div>
+	
+	
+</h:body>
+</html>
