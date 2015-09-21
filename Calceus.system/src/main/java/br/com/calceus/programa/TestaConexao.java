@@ -52,7 +52,7 @@ public class TestaConexao {
 	
 	public static void main(String[] args) throws SQLException {
 		
-		Connection conn = GerenciadorDeConexoes.getConnection("mysql", "localhost", "calceus", "root", "camila");
+		Connection conn = GerenciadorDeConexoes.getConnection("mysql", "localhost", "calceus", "root", "camila2015");
 		
 		Statement st  = conn.createStatement();
 		boolean resultado = st.execute("select * from Cargo"); //boolean para ser tratado depois

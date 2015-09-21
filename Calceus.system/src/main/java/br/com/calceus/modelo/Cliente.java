@@ -15,6 +15,7 @@ public class Cliente extends Pessoa implements Consultas {
 		this.idPessoa = idPessoa;
 
 	}
+	public Cliente(){}
 
 	public int getIdCliente() {
 		return this.idCliente;
