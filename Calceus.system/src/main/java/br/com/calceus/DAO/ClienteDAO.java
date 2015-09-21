@@ -27,16 +27,16 @@ public class ClienteDAO {
 			System.out.println("O valor passado não pode ser nulo");
 		}
 		try {
-			String comando = "INSERT INTO calceus.Cliente(idCliente,tipoCliente,status,idPessoa)" + "values(?,?,?,?)";
+			String comando = "INSERT INTO Cliente(idCliente,tipoCliente,status,idPessoa)" + "values(?,?,?,?)";
 			conn = this.conn;
 			pps = conn.prepareStatement(comando);
-			pps.setInt(0, cliente.getIdCliente());
+			pps.setInt(1, cliente.getIdCliente());
 			pps.setInt(1, cliente.getTipoCliente());
-			pps.setLong(2, cliente.getStatus());
-			pps.setInt(3, cliente.getIdPessoa());
+			pps.setLong(3, cliente.getStatus());
+			pps.setInt(4, cliente.getIdPessoa());
 			pps.execute();
 			pps.close();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Erro ao inserir dados no banco");
 		}finally {
 			try {
@@ -63,7 +63,7 @@ public class ClienteDAO {
 		Cliente cliente = null;
 		try {
 			conn = this.conn;
-			pps = conn.prepareStatement("selec * from calceus.Clientes where id = ?");
+			pps = conn.prepareStatement("selec * from Clientes where id = ?");
 			pps.setInt(1, idCliente);
 			rs = pps.executeQuery();
 			if(! rs.next()){
@@ -72,7 +72,7 @@ public class ClienteDAO {
 			int id = rs.getInt(1);
 			int tipo = rs.getInt(2);
 			char status = (char) rs.getLong(3);
-			int idPessoa = rs.getInt(3);
+			int idPessoa = rs.getInt(4);
 			
 			cliente =  new Cliente(id, tipo, status,idPessoa); 
 		} catch (Exception e) {
