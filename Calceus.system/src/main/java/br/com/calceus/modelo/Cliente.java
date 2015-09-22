@@ -1,13 +1,13 @@
 package br.com.calceus.modelo;
 
-public class Cliente extends Pessoa implements Consultas {
+public class Cliente extends Pessoa{
 
 	private int idCliente;
-	private int tipoCliente;
+	private String tipoCliente;
 	private char status;
 	private int idPessoa;
 
-	public Cliente(int idCliente, int tipoCliente, char status, int idPessoa) {
+	public Cliente(int idCliente, String tipoCliente, char status, int idPessoa) {
 		super();
 		this.idCliente = idCliente;
 		this.tipoCliente = tipoCliente;
@@ -21,7 +21,7 @@ public class Cliente extends Pessoa implements Consultas {
 		return this.idCliente;
 	}
 
-	public int getTipoCliente() {
+	public String getTipoCliente() {
 		return this.tipoCliente;
 	}
 
@@ -37,17 +37,5 @@ public class Cliente extends Pessoa implements Consultas {
 	public String toString() {
 		return "Cliente " + this.getTipoCliente();
 	}
-
-	
-	@Override
-	public Pedido consultaPedido(int numero) {
-		Pedido retorno =  Pedido.consultaPedido(numero);
-		return retorno; 
-
-	}
-
-
-
-	
 
 }
