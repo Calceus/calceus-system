@@ -19,10 +19,10 @@ public class TesteTudo {
 		armario.adicionaPedido(pedido1);
 		armario.adicionaPedido(pedido2);
 
-		Cliente joao = new Cliente(001, 1, 'A', 1205);
+		Cliente joao = new Cliente(001, "1", 'A', 1205);
 		joao.setNome("Joao");
 
-		Cliente maria = new Cliente(002, 2, 'A', 1035);
+		Cliente maria = new Cliente(002, "2", 'A', 1035);
 		maria.setNome("Maria");
 
 		AdicionaClientesFuncionarios programa = new AdicionaClientesFuncionarios();
@@ -35,8 +35,8 @@ public class TesteTudo {
 		} catch (NullPointerException e) {
 			System.out.println("Erro 404 pessoas nao encontradas");
 		}
-		System.out.println(joao.consultaPedido(0));
-		System.out.println(joao.consultaPedido(1));
+//		System.out.println(joao.consultaPedido(0));
+//		System.out.println(joao.consultaPedido(1));
 	   
 
 	}
