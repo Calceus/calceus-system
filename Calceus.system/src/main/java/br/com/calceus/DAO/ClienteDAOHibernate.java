@@ -3,6 +3,7 @@ package br.com.calceus.DAO;
 import java.util.List;
 
 import br.com.calceus.modelo.Cliente;
+import br.com.calceus.DAO.interfaces.ClienteDAO;
 
 public class ClienteDAOHibernate implements ClienteDAO {
 
@@ -47,7 +48,5 @@ public class ClienteDAOHibernate implements ClienteDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
 
 }
