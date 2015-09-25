@@ -1,4 +1,4 @@
-package br.com.calceus.cadastro;
+package br.com.calceus.beans;
 
 
 
