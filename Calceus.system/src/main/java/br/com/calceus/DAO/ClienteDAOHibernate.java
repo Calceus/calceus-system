@@ -2,7 +2,6 @@ package br.com.calceus.DAO;
 
 import java.util.List;
 
-import br.com.calceus.DAO.interfaces.ClienteDAO;
 import br.com.calceus.modelo.Cliente;
 
 public class ClienteDAOHibernate implements ClienteDAO {
