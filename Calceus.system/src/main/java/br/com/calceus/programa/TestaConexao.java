@@ -4,47 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-/**
- * PARA ACESSAR O BANCO COMO LOCALHOST EXECUTE O PASSO 4 SOMENTE E MUDE AS CONFIGURA��ES NO C�DIGO
 
-PARA DAR ACESSO AO BANCO DE DADOS EXTERNO
-
-1-Editar o arquivo de configura��o do mysql
-
-	nano /etc/mysql/my.cnf
-
-2 - Editar a linha onde esta assim:
-	
-	bind-address = 127.0.0.1
-
-	para
-	
-		bind-address = ip-servidor-mysql (ex:192.168.2.21)
-
-3 - Reiniciar o banco
-
-	service mysql restart
-
-	ou
-
-	/etc/init.d/mysql restart
-
-
-4 - RODAR O SCRIPT DO BANCO (Script Calceus.sql)
-
-5 - LOGAR NO SHELL DO MYSQL 
-	
-	mysql -u root -p 
-	
-	
-5 - CREATE USER 'calceus'@'192.168.2.21' IDENTIFIED BY 'calceusdb';
-
-6 - GRANT ALL PRIVILEGES ON calceus.* TO 'calceus'@'192.168.2.21' WITH GRANT OPTION;
-
-FLUSH PRIVILEGES;
-
- */
-import br.com.calceus.banco.GerenciadorDeConexoes;
+import br.com.calceus.conexao.GerenciadorDeConexoes;
 
 public class TestaConexao {
 

@@ -1,4 +1,4 @@
-package br.com.calceus.banco;
+package br.com.calceus.conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

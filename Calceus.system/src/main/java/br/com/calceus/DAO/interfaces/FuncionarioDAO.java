@@ -1,4 +1,4 @@
-package br.com.calceus.interfacesDAO;
+package br.com.calceus.DAO.interfaces;
 
 import br.com.calceus.modelo.Cliente;
 

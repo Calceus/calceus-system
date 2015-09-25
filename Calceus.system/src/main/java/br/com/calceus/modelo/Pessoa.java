@@ -1,13 +1,21 @@
 package br.com.calceus.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+
 public abstract class Pessoa {
 
+	@Id
+	@GeneratedValue
 	protected int idPessoa;
 	protected int cpf;
+	protected String rg;
 	protected int idade;
 	protected char sexo;
 	protected String nome;
-	protected String rg;
 	protected String email;
 
 	/*public Pessoa(int idPessoa, int cpf, int idade, char sexo, String nome, String rg, String email) {
