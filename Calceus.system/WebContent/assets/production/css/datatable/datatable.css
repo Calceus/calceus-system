@@ -1,0 +1,32 @@
+.pui-datatable table{border-collapse:collapse;width:100%;table-layout:fixed;}
+.pui-datatable-tablewrapper{overflow:auto;}
+.pui-datatable .pui-datatable-caption{text-align:center;padding:4px 10px;}
+.pui-datatable .pui-datatable-caption{border-bottom:0 none;}
+.pui-datatable thead th,.pui-datatable tfoot td{text-align:center;}
+.pui-datatable thead th,.pui-datatable tbody td,.pui-datatable tfoot td,.pui-datatable tfoot th{padding:4px 10px;overflow:hidden;border-width:1px;border-style:solid;}
+.pui-datatable tbody td{border-color:inherit;}
+.pui-datatable .pui-sortable-column{cursor:pointer;}
+.pui-datatable .pui-sortable-column-icon{display:inline-block;margin:-3px 0 -3px 2px;}
+.pui-datatable tr.ui-state-highlight{cursor:pointer;}
+.pui-datatable-scrollable-body{overflow:auto;}
+.pui-datatable-scrollable-header{overflow:hidden;border:0 none;}
+.pui-datatable-scrollable .pui-datatable-scrollable-header{position:relative;}
+.pui-datatable-scrollable .pui-datatable-scrollable-header td{font-weight:normal;}
+.pui-datatable-scrollable-body::-webkit-scrollbar{-webkit-appearance:none;width:15px;background-color:transparent;}
+.pui-datatable-scrollable-body::-webkit-scrollbar-thumb{border-radius:8px;border:1px solid white;background-color:rgba(194,194,194,.5);}
+.pui-datatable .pui-datatable-scrollable-body{min-height:0;}
+.pui-datatable .pui-datatable-data tr.ui-state-hover{border-color:inherit;font-weight:inherit;cursor:pointer;}
+.pui-datatable-scrollable-theadclone{height:0;}
+.pui-datatable-scrollable-theadclone tr{height:0;}
+.pui-datatable-scrollable-theadclone th.ui-state-default{height:0;border-bottom-width:0;border-top-width:0;padding-top:0;padding-bottom:0;outline:0 none;}
+.pui-datatable-scrollable-theadclone th span.pui-column-title{display:block;height:0;}
+.pui-datatable .pui-paginator{padding:2px;border-top:0 none;}
+.pui-datatable-rtl{direction:rtl;}
+.pui-datatable-rtl.pui-datatable thead th,.pui-datatable-rtl.pui-datatable tfoot td{text-align:right;}
+.ppui-datatable-reflow .ppui-datatable-data td .ppui-column-title{display:none;}
+@media(max-width:35em){.ppui-datatable-reflow thead th,.ppui-datatable-reflow tfoot td{display:none;}
+.ppui-datatable-reflow .ppui-datatable-data td{text-align:left;display:block;border:0 none;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;float:left;clear:left;}
+.ppui-datatable-reflow .ppui-datatable-data.pui-widget-content{border:0 none;}
+.ppui-datatable-reflow .ppui-datatable-data tr.pui-widget-content{border-left:0 none;border-right:0 none;}
+.ppui-datatable-reflow .ppui-datatable-data td .ppui-column-title{padding:.4em;min-width:30%;display:inline-block;margin:-.4em 1em -.4em -.4em;}
+}

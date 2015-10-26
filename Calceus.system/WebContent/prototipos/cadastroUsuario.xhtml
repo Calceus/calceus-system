@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f= "http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		
+		<title>Cadastro de Usuário</title>
+		
+    	<link rel="stylesheet" href="../assets/css/jquery-ui.css" />
+    	<link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css" />
+    	<link rel="stylesheet" href="../assets/production/primeui-2.1-min.css" />
+    	<link rel="stylesheet" href="../assets/themes/bootstrap/theme.css" />
+    	
+    	<!-- SCRIPTS JQUERY -->
+		<script type="text/javascript" src="../assets/js/jquery-2.1.4.js"></script>
+    	<script type="text/javascript" src="../assets/js/jquery-ui.js"></script>
+    	<script type="text/javascript" src="../assets/production/primeui-2.1-min.js"></script>
+    	<script type="text/javascript" src="../assets/js/main.js"></script>
+    	
+	</h:head>
+	
+	<h:body>
+	<div class="container">
+		<div id="target">
+			<ul id="stickymenu">
+			    <li> <a data-icon="ui-icon-document">File</a>
+			        <ul> 
+			            <li><a data-icon="ui-icon-contact">New</a>
+			                <ul>
+			                    <li><a>Project</a></li>
+			                    <li><a>Other</a></li>
+			                </ul>
+			            </li> 
+			            <li><a>Open</a></li> 
+			            <li><a>Quit</a></li> 
+			        </ul>
+			    </li>
+			    <li> <a data-icon="ui-icon-pencil">Edit</a>
+			        <ul>
+			            <li><a data-icon="ui-icon-arrowreturnthick-1-w">Undo</a></li>
+			            <li><a data-icon="ui-icon-arrowreturnthick-1-e">Redo</a></li>
+			        </ul>
+			    </li>
+			    <li>
+			        <a data-icon="ui-icon-help">Help</a>
+			        <ul>
+			            <li><a>Contents</a></li>
+			            <li>
+			                <a data-icon="ui-icon-search">Search</a>
+			                <ul>
+			                    <li><a>Text</a>
+			                        <ul>
+			                            <li><a>Workspace</a></li>
+			                        </ul>
+			                    </li>
+			                    <li><a>File</a></li>
+			                </ul>
+			            </li>
+			 
+			        </ul>
+			    </li>
+			    <li>
+			        <a data-icon="ui-icon-gear">Actions</a>
+			        <ul>
+			            <li><a data-icon="ui-icon-refresh">Ajax</a>
+			                <ul>
+			                    <li><a data-icon="ui-icon-disk">Save</a></li>
+			                    <li><a data-icon="ui-icon-arrowrefresh-1-w">Update</a></li>
+			                </ul>
+			            </li>
+			            <li><a data-icon="ui-icon-document">Non-Ajax</a>
+			                <ul>
+			                    <li><a data-icon="ui-icon-close">Delete</a></li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </li>
+			    <li>
+			        <a data-icon="ui-icon-close">Quit</a>
+			    </li>
+			</ul>
+		</div>
+			<h:form>
+			    <p:panel header="Cadastro de Usuario">
+			        <p:messages autoUpdate="true"/>
+			 
+			        <h:panelGrid id="grid" columns="4" cellpadding="5">
+			            <h:outputLabel for="Nome" value="Nome:" style="font-weight:bold"/>                    
+			            <p:inputText id="Nome" value="#{usuarioBean.nome}" required="true" label="Nome"/>
+			            <p:message for="Nome" />
+			            <h:outputText value="#{usuarioBean.nome}" />
+			 
+			 			<h:outputLabel for="rg" value="RG:" style="font-weight:bold"/>                    
+			            <p:inputText id="rg" value="#{usuarioBean.rg}" required="true" label="RG"/>
+			            <p:message for="rg" />
+			            <h:outputText value="#{usuarioBean.rg}" />
+			            
+			            <h:outputLabel for="cpf" value="CPF:" style="font-weight:bold"/>                    
+			            <p:inputText id="cpf" value="#{usuarioBean.cpf}" required="true" label="CPF"/>
+			            <p:message for="cpf" />
+			            <h:outputText value="#{usuarioBean.cpf}" />
+			            
+			            <h:outputLabel for="idade" value="Idade:" style="font-weight:bold"/>                    
+			            <p:inputText id="idade" value="#{usuarioBean.idade}" required="true" label="Idade">
+			                <f:validateDoubleRange minimum="1" maximum="99" />
+			            </p:inputText>
+			            <p:message for="idade" />
+			            <h:outputText value="#{usuarioBean.idade}" />
+			 
+			            <h:outputLabel for="sexo" value="Sexo:" style="font-weight:bold"/>                    
+			            <p:inputText id="sexo" value="#{usuarioBean.sexo}" required="true" label="sexo"/>
+			            <p:message for="sexo" />
+			            <h:outputText value="#{usuarioBean.sexo}" />
+			 
+			           
+			 
+			            <h:outputLabel for="email" value="Email:" style="font-weight:bold"/>                    
+			            <p:inputText id="email" value="#{usuarioBean.email}" required="true" validatorMessage="Email incorreto">
+			                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			            </p:inputText>
+			            <p:message for="email" />
+			            <h:outputText value="#{usuarioBean.email}" />
+			 
+			            <h:outputLabel for="dateNasc" value="Data Nascimento" style="font-weight:bold"/>                 
+			            <p:inputText id="dateNasc" value="#{usuarioBean.dataNascimento}" label="Date">
+			                <f:convertDateTime pattern="MM/dd/yyyy" />
+			            </p:inputText>
+			            <p:message for="dateNasc" />
+			            <h:outputText value="#{usuarioBean.dataNascimento}">
+			                <f:convertDateTime pattern="MM/dd/yyyy" />
+			            </h:outputText>
+			 
+			            
+			        </h:panelGrid>
+			 
+			        <p:commandButton value="Non-Ajax" ajax="false" icon="ui-icon-check" validateClient="true" style="margin-right:10px"/>
+			        <p:commandButton value="Ajax" update="grid" icon="ui-icon-check" validateClient="true" style="margin-right:10px"/>
+			        <p:commandButton value="Partial" update="grid" process="Nome email" validateClient="true" icon="ui-icon-check" style="margin-right:10px"/>
+			        <p:commandButton value="Disabled" ajax="false" icon="ui-icon-check" />
+			    </p:panel>
+			</h:form>
+	</div>
+		
+	</h:body>
+
+</html>

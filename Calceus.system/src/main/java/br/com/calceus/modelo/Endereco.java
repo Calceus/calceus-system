@@ -12,6 +12,9 @@ public class Endereco {
 	private String cidade;
 	private String estado;
 	
+	public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
 	public Endereco(int idEndereco, int cep, String logradouro, String complemento, String numero, String bairro,
 			String pais, String cidade, String estado) {
 		this.idEndereco = idEndereco;

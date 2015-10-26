@@ -1,4 +1,13 @@
 /*
+ * Códigos para manipular o Primefaces
+ */
+$(function() {
+    $('#stickymenu').puimenubar();
+ 
+    $('#stickymenu').parent().puisticky();
+});
+
+/*
 	Halcyonic by HTML5 UP
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)

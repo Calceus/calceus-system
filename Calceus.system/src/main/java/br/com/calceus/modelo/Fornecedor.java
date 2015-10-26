@@ -4,16 +4,20 @@ public class Fornecedor {
 
 	private int idFornecedor;
 	private String cnpj;
-	private String razaoSocial; //campo nomeFornecedor no banco de dados
+	private String razaoSocial; 
+	private int telefone;
 	private String site;
 	private String obs;
-	public Fornecedor(int idFornecedor, String cnpj, String razaoSocial, String site, String obs) {
+	
+	public Fornecedor(int idFornecedor, String razaoSocial, String cnpj, int telefone, String site, String obs) {
 		this.idFornecedor = idFornecedor;
-		this.cnpj = cnpj;
 		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
+		this.telefone = telefone;
 		this.site = site;
 		this.obs = obs;
 	}
+	
 	public int getIdFornecedor() {
 		return idFornecedor;
 	}
@@ -23,6 +27,9 @@ public class Fornecedor {
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
+	public int getTelefone(){
+		return telefone;
+	}
 	public String getSite() {
 		return site;
 	}
@@ -30,5 +37,9 @@ public class Fornecedor {
 		return obs;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getRazaoSocial();
+	}
 }

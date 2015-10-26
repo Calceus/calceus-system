@@ -49,4 +49,13 @@ public class GerenciadorDeConexoes {
 		return null;
 		
 	}
+	public static Connection getConnection(){
+		try {
+			return DriverManager.getConnection("jdbc:mysql://localhost/calceus", "root", "");
+		} catch (SQLException e) {
+			System.out.println("Verifique os dados de conexão **** "+ e.getMessage() );
+			
+		}
+		return null;
+	}
 }
