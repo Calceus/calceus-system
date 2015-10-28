@@ -17,7 +17,7 @@ public class FornecedorDAO {
 		
 	}
 
-	public void salvar(Fornecedor fornecedor) {
+	public boolean salvar(Fornecedor fornecedor) {
 		Connection conexao = this.geraConexao();
 		PreparedStatement insereSt = null;
 		String sql = "INSERT INTO fornecedor(razaoSocial, cnpj, telefone, site, obs) values (?,?,?,?,?)";
@@ -29,8 +29,10 @@ public class FornecedorDAO {
 			insereSt.setString(4, fornecedor.getSite());
 			insereSt.setString(5, fornecedor.getObs());
 			insereSt.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Erro ao incluir fornecedor. Mensagem: " + e.getMessage());
+			return false;
 		} finally {
 			try {
 				insereSt.close();
@@ -88,9 +90,5 @@ public class FornecedorDAO {
 	public Connection geraConexao() {
 		Connection conn = GerenciadorDeConexoes.getConnection();
 		return conn;
-	}
-	public static void main(String[] args) {
-		FornecedorDAO dao = new FornecedorDAO();
-		System.out.println("Fornecedor" + dao.listar());;
 	}
 }
