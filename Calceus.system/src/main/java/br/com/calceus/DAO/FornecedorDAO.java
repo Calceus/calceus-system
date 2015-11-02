@@ -51,10 +51,11 @@ public class FornecedorDAO {
 
 	public List<Fornecedor> listar() {
 		Connection conexao = this.geraConexao();
-		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		Statement consulta = null;
 		ResultSet resultado = null;
+		
 		Fornecedor fornecedor = null;
+		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		String sql = "SELECT * FROM fornecedor";
 
 		try {
@@ -70,11 +71,14 @@ public class FornecedorDAO {
 				
 				fornecedores.add(fornecedor);
 			}
+			
 		} catch (SQLException e) {
 			System.out.println("Erro ao buscar codigo de fornecedor. Mensagem: " + e.getMessage());
 		} finally {
 			try {
+				conexao.close();
 				consulta.close();
+				resultado.close();
 
 			} catch (Throwable e) {
 				System.out.println("Erro ao fechar operações de consulta. Mensagem: " + e.getMessage());

@@ -71,7 +71,7 @@ public class Fornecedor {
 		dao = new FornecedorDAO();
 		//faz um array de fornecedores e atribui o toString ao ListS
 		for (Fornecedor f : dao.listar()) {
-			fornecedores.add(f.toString());
+			fornecedores.add(f.getRazaoSocial());
 		}
 		return fornecedores;
 	}
