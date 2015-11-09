@@ -107,13 +107,4 @@ public class ClienteDAO {
 		return conn;
 	}
 	
-	public static void main(String[] args) {
-		ClienteDAO clienteDAO = new ClienteDAO();
-		
-		Cliente cliente = new Cliente(0, "Cliente", "A", "Laercio Ferracini", 1234567890, "M", Calendar.getInstance(), 1198765432, 1198765432, "laercio_ferracini@yahoo.com.br");
-		clienteDAO.adicionaCliente(cliente);
-		
-		System.out.println("Cliente" + clienteDAO.consultarCliente(1).toString());
-	}
-
 }

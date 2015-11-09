@@ -1,5 +1,6 @@
 package br.com.calceus.DAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,7 +87,22 @@ public class FornecedorDAO {
 		}
 		return fornecedores;
 	}
-
+	
+	private void procedureListar(){
+		Connection con = GerenciadorDeConexoes.getConnection();
+		CallableStatement call = null;
+		ResultSet rs = null;
+		try{
+			call = con.prepareCall("{CALL RetornaFornecedores()}");
+			rs = call.executeQuery();
+			while(rs.next()){
+				System.out.println(rs.getString(1)+"\n"+rs.getString(2)+"\n"+rs.getString(3)+"\n"+rs.getString(4)+"\n");
+			}
+		}catch(SQLException e){
+			System.out.println("Error: "+e.getMessage());
+		}
+	}
+	
 	public Fornecedor buscafornecedor(int valor) {
 		return null;
 	}
@@ -95,4 +111,6 @@ public class FornecedorDAO {
 		Connection conn = GerenciadorDeConexoes.getConnection();
 		return conn;
 	}
+	
+	
 }
