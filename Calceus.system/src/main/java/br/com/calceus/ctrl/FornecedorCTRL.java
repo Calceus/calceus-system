@@ -23,8 +23,13 @@ public class FornecedorCTRL {
 	}
 	
 	public List<Fornecedor> listarFornecedores(){
-		Fornecedor fornecedor = new Fornecedor();
+		fornecedor = new Fornecedor();
 		return fornecedor.listarFornecedores();
+	}
+
+	public boolean excluir(int cod) {
+		fornecedor = new Fornecedor();
+		return fornecedor.excluir(cod);
 	}
 	
 }

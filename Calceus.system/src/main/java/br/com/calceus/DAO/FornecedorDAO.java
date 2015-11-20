@@ -47,7 +47,24 @@ public class FornecedorDAO {
 	public void atualizar(Fornecedor fornecedor) {
 	}
 
-	public void excluir(Fornecedor fornecedor) {
+	public boolean excluir(int cod) {
+		Connection conexao = this.geraConexao();
+		PreparedStatement pstm = null;
+		String sql = "DELETE FROM fornecedor WHERE idFornecedor = ?";
+		boolean resultado = false;
+		try {
+			pstm = conexao.prepareStatement(sql);
+			pstm.setInt(1, cod);
+			
+			int retorno = pstm.executeUpdate();
+			if(retorno == 1){
+				resultado = true;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			resultado = false;
+		}
+		return resultado;
 	}
 
 	public List<Fornecedor> listar() {
@@ -88,20 +105,6 @@ public class FornecedorDAO {
 		return fornecedores;
 	}
 	
-	private void procedureListar(){
-		Connection con = GerenciadorDeConexoes.getConnection();
-		CallableStatement call = null;
-		ResultSet rs = null;
-		try{
-			call = con.prepareCall("{CALL RetornaFornecedores()}");
-			rs = call.executeQuery();
-			while(rs.next()){
-				System.out.println(rs.getString(1)+"\n"+rs.getString(2)+"\n"+rs.getString(3)+"\n"+rs.getString(4)+"\n");
-			}
-		}catch(SQLException e){
-			System.out.println("Error: "+e.getMessage());
-		}
-	}
 	
 	public Fornecedor buscafornecedor(int valor) {
 		return null;
@@ -129,10 +132,5 @@ public class FornecedorDAO {
 			System.out.println("Error: "+e.getMessage());
 		}
 		return fornecedores;
-	}
-	
-	public static void main(String[] args) {
-		FornecedorDAO  dao = new FornecedorDAO();
-		dao.procedureListar();
 	}
 }

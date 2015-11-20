@@ -79,4 +79,8 @@ public class Fornecedor {
 		dao = new FornecedorDAO();
 		return dao.listarFornecedores();
 	}
+	public boolean excluir(int cod) {
+		dao = new FornecedorDAO();
+		return dao.excluir(cod);
+	}
 }
