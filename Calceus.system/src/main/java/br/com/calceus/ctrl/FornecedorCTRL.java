@@ -22,6 +22,9 @@ public class FornecedorCTRL {
 		return fornecedor.listar();		
 	}
 	
-	
+	public List<Fornecedor> listarFornecedores(){
+		Fornecedor fornecedor = new Fornecedor();
+		return fornecedor.listarFornecedores();
+	}
 	
 }

@@ -75,4 +75,8 @@ public class Fornecedor {
 		}
 		return fornecedores;
 	}
+	public List<Fornecedor> listarFornecedores() {
+		dao = new FornecedorDAO();
+		return dao.listarFornecedores();
+	}
 }

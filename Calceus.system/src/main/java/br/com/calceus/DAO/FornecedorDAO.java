@@ -112,5 +112,27 @@ public class FornecedorDAO {
 		return conn;
 	}
 	
+	public List<Fornecedor> listarFornecedores(){
+		Connection con = GerenciadorDeConexoes.getConnection();
+		CallableStatement call = null;
+		ResultSet rs = null;
+		List<Fornecedor> fornecedores = new ArrayList<>();
+		Fornecedor f;
+		try{
+			call = con.prepareCall("{CALL RetornaFornecedores()}");
+			rs = call.executeQuery();
+			while(rs.next()){
+				f = new Fornecedor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6));
+				fornecedores.add(f);
+			}
+		}catch(SQLException e){
+			System.out.println("Error: "+e.getMessage());
+		}
+		return fornecedores;
+	}
 	
+	public static void main(String[] args) {
+		FornecedorDAO  dao = new FornecedorDAO();
+		dao.procedureListar();
+	}
 }
