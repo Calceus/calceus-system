@@ -1,20 +1,20 @@
 package br.com.calceus.beans;
 
-
-
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
+import org.primefaces.context.RequestContext;
 
 import br.com.calceus.modelo.Endereco;
 
-@ManagedBean(name= "usuarioBean")
-@RequestScoped
-public class UsuarioBean {
-	
+@ManagedBean
+public class Usuario {
+
 	private String nome;
 	private String rg;
 	private int cpf;
@@ -25,33 +25,42 @@ public class UsuarioBean {
 	private int ddd;
 	private int telefone;
 	private String tipoTelefone;
-	
+
 	private Endereco endereco;
-	
-	private String logradouro;
-	private int cep;
-	private String complemento;
-	private String numero;
-	private String bairro;
-	private String cidade;
-	private String estado;
-	private String tipoEndereco;
-	
+
 	private String senha;
 	private String confirmaSenha;
 
-	public String novo(){
-		
+	public String novo() {
+
 		return "usuario";
 	}
 
 	public String salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		if(!this.senha.equalsIgnoreCase(this.confirmaSenha)){
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Senha confirmada incorretamente", ""));
+		if (!this.senha.equalsIgnoreCase(this.confirmaSenha)) {
+			context.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha confirmada incorretamente", ""));
 			return "usuario";
 		}
 		return "sucesso";
+	}
+
+	public void login(ActionEvent event) {
+		RequestContext context = RequestContext.getCurrentInstance();
+		FacesMessage message = null;
+		boolean loggedIn = false;
+
+		if (email != null && email.equals("admin") && senha != null && senha.equals("admin")) {
+			loggedIn = true;
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", email);
+		} else {
+			loggedIn = false;
+			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
+		}
+
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		context.addCallbackParam("loggedIn", loggedIn);
 	}
 
 	public void setNome(String nome) {
@@ -150,68 +159,4 @@ public class UsuarioBean {
 		this.tipoTelefone = tipoTelefone;
 	}
 
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public int getCep() {
-		return cep;
-	}
-
-	public void setCep(int cep) {
-		this.cep = cep;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getTipoEndereco() {
-		return tipoEndereco;
-	}
-
-	public void setTipoEndereco(String tipoEndereco) {
-		this.tipoEndereco = tipoEndereco;
-	}
-	
 }
