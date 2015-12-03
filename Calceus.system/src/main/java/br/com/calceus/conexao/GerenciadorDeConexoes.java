@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class GerenciadorDeConexoes {
 
+	
 	/**
 	 * MÉTODO PARA UTILIZAR QUANDO FOR UMA CONEXÃO SQLSERVER
 	 * @param tipo

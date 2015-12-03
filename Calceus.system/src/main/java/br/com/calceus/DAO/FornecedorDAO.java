@@ -5,132 +5,134 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.calceus.conexao.GerenciadorDeConexoes;
+import br.com.calceus.conexao.ConnectionPool;
 import br.com.calceus.modelo.Fornecedor;
 
 public class FornecedorDAO {
 
 	public FornecedorDAO() {
-		
+
 	}
 
 	public boolean salvar(Fornecedor fornecedor) {
-		Connection conexao = this.geraConexao();
-		PreparedStatement insereSt = null;
-		String sql = "INSERT INTO fornecedor(razaoSocial, cnpj, telefone, site, obs) values (?,?,?,?,?)";
-		try {
-			insereSt = conexao.prepareStatement(sql);
-			insereSt.setString(1, fornecedor.getRazaoSocial());
-			insereSt.setString(2, fornecedor.getCnpj());
-			insereSt.setInt(3, fornecedor.getTelefone());
-			insereSt.setString(4, fornecedor.getSite());
-			insereSt.setString(5, fornecedor.getObs());
-			insereSt.executeUpdate();
-			return true;
-		} catch (SQLException e) {
-			System.out.println("Erro ao incluir fornecedor. Mensagem: " + e.getMessage());
-			return false;
-		} finally {
-			try {
+		boolean resultado = false;
+		try (Connection conexao = new ConnectionPool().getConnection()) {
+
+			String sql = "INSERT INTO fornecedor(razaoSocial, cnpj, telefone, site, obs) values (?,?,?,?,?)";
+			try (PreparedStatement insereSt = conexao.prepareStatement(sql)) {
+				insereSt.setString(1, fornecedor.getRazaoSocial());
+				insereSt.setString(2, fornecedor.getCnpj());
+				insereSt.setInt(3, fornecedor.getTelefone());
+				insereSt.setString(4, fornecedor.getSite());
+				insereSt.setString(5, fornecedor.getObs());
+				insereSt.execute();
 				insereSt.close();
-				conexao.close();
-			} catch (Throwable e) {
-				System.out.println("Erro ao fechar operações de inserção. Mensagem: " + e.getMessage());
+				resultado = true;
+				return resultado;
+			} catch (Exception e) {
+				System.out.println("Erro ao incluir fornecedor. Mensagem: " + e.getMessage());
+				return resultado;
 			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		return resultado;
+
 	}
 
 	public void atualizar(Fornecedor fornecedor) {
 	}
 
 	public boolean excluir(int cod) {
-		Connection conexao = this.geraConexao();
-		PreparedStatement pstm = null;
-		String sql = "DELETE FROM fornecedor WHERE idFornecedor = ?";
 		boolean resultado = false;
-		try {
-			pstm = conexao.prepareStatement(sql);
-			pstm.setInt(1, cod);
+		try (Connection conexao = new ConnectionPool().getConnection()) {
 			
-			int retorno = pstm.executeUpdate();
-			if(retorno == 1){
-				resultado = true;
+			String sql = "DELETE FROM fornecedor WHERE idFornecedor = ?";
+
+			try (PreparedStatement pstm = conexao.prepareStatement(sql)){
+				pstm.setInt(1, cod);
+
+				int retorno = pstm.executeUpdate();
+				if (retorno == 1) {
+					resultado = true;
+				}
+
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				resultado = false;
 			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			resultado = false;
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return false;
 		}
 		return resultado;
 	}
 
 	public List<Fornecedor> listar() {
-		Connection conexao = this.geraConexao();
-		Statement consulta = null;
-		ResultSet resultado = null;
-		
-		Fornecedor fornecedor = null;
-		List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
-		String sql = "SELECT * FROM fornecedor";
 
-		try {
-			consulta = conexao.createStatement();
-			resultado = consulta.executeQuery(sql);
-			while (resultado.next()) {
-				fornecedor = new Fornecedor(resultado.getInt("idFornecedor"),
-						resultado.getString("razaoSocial"),
-						resultado.getString("cnpj"),
-						resultado.getInt("telefone"),
-						resultado.getString("site"),
-						resultado.getString("obs"));
-				
-				fornecedores.add(fornecedor);
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("Erro ao buscar codigo de fornecedor. Mensagem: " + e.getMessage());
-		} finally {
-			try {
-				conexao.close();
-				consulta.close();
-				resultado.close();
+		try (Connection conexao = new ConnectionPool().getConnection()) {
 
-			} catch (Throwable e) {
-				System.out.println("Erro ao fechar operações de consulta. Mensagem: " + e.getMessage());
+			ResultSet resultado = null;
+
+			Fornecedor fornecedor = null;
+			List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+			String sql = "SELECT * FROM fornecedor";
+
+			try (PreparedStatement consulta = conexao.prepareStatement(sql)) {
+
+				resultado = consulta.executeQuery(sql);
+				while (resultado.next()) {
+					fornecedor = new Fornecedor(resultado.getInt("idFornecedor"), resultado.getString("razaoSocial"),
+							resultado.getString("cnpj"), resultado.getInt("telefone"), resultado.getString("site"),
+							resultado.getString("obs"));
+
+					fornecedores.add(fornecedor);
+				}
+
+				return fornecedores;
+			} catch (Exception e) {
+				System.out.println("Erro ao buscar codigo de fornecedor. Mensagem: " + e.getMessage());
 			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		return fornecedores;
+
+		return null;
 	}
-	
-	
+
 	public Fornecedor buscafornecedor(int valor) {
 		return null;
 	}
 
-	public Connection geraConexao() {
-		Connection conn = GerenciadorDeConexoes.getConnection();
-		return conn;
-	}
-	
-	public List<Fornecedor> listarFornecedores(){
-		Connection con = GerenciadorDeConexoes.getConnection();
-		CallableStatement call = null;
-		ResultSet rs = null;
-		List<Fornecedor> fornecedores = new ArrayList<>();
-		Fornecedor f;
-		try{
-			call = con.prepareCall("{CALL RetornaFornecedores()}");
-			rs = call.executeQuery();
-			while(rs.next()){
-				f = new Fornecedor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6));
-				fornecedores.add(f);
+	public List<Fornecedor> listarFornecedores() {
+		List<Fornecedor> fornecedores = null;
+		try (Connection con = new ConnectionPool().getConnection()) {
+
+			ResultSet rs = null;
+			fornecedores = new ArrayList<>();
+			Fornecedor f;
+			try (CallableStatement call = con.prepareCall("{CALL RetornaFornecedores()}")) {
+
+				rs = call.executeQuery();
+				while (rs.next()) {
+					f = new Fornecedor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
+							rs.getString(6));
+					fornecedores.add(f);
+				}
+			} catch (Exception e) {
+				System.out.println("Error: " + e.getMessage());
 			}
-		}catch(SQLException e){
-			System.out.println("Error: "+e.getMessage());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+
 		return fornecedores;
 	}
 }

@@ -1,5 +1,6 @@
 package br.com.calceus.modelo;
 
+import java.sql.ResultSet;
 import java.util.Calendar;
 
 public class Funcionario {
@@ -16,6 +17,13 @@ public class Funcionario {
 
 	public Funcionario(int idFuncionario, String nomeFuncionario, Calendar dataAdmissao, double salario, int idCargo) {
 		this.idFuncionario = idFuncionario;
+		this.nomeFuncionario = nomeFuncionario;
+		this.dataAdmissao = dataAdmissao;
+		this.salario = salario;
+		this.idCargo = idCargo;
+	}
+
+	public Funcionario(int idCargo, String nomeFuncionario, Calendar dataAdmissao, double salario) {
 		this.nomeFuncionario = nomeFuncionario;
 		this.dataAdmissao = dataAdmissao;
 		this.salario = salario;
@@ -46,6 +54,10 @@ public class Funcionario {
 	public String toString() {
 
 		return "Funcionario " + this.getIdCargo() + " " + this.getIdFuncionario();
+	}
+
+	public void setId(int id) {
+		this.idFuncionario = id;
 	}
 
 }
