@@ -1,5 +1,7 @@
 package br.com.calceus.modelo;
 
+import java.util.List;
+
 public class Produto {
 
 	private int idProduto;
@@ -7,6 +9,12 @@ public class Produto {
 	private int quantidade;
 	private double valor;
 	private int idCategoria;
+	private int idFornecedor;
+	private char genero;
+	
+	public Produto() {
+		
+	}
 
 	public Produto(int idProduto, String nomeProduto, int quantidade, double valor) {
 		this.idProduto = idProduto;
@@ -15,6 +23,11 @@ public class Produto {
 		this.valor = valor;
 
 	}
+	
+	
+	public Produto(int idProduto2) {
+		this.idProduto = idProduto2;
+	}
 
 	public int getIdProduto() {
 		return idProduto;
@@ -22,6 +35,14 @@ public class Produto {
 
 	public String getNomeProduto() {
 		return nomeProduto;
+	}
+
+	public int getIdFornecedor() {
+		return idFornecedor;
+	}
+
+	public char getGenero() {
+		return genero;
 	}
 
 	public int getQuantidade() {
@@ -36,12 +57,30 @@ public class Produto {
 		return idCategoria;
 	}
 
-	public void mostra() {
-		this.getIdProduto();
-		this.getIdCategoria();
-		this.getNomeProduto();
-		this.getValor();
-
+	public boolean verificarDisponibilidade(int idProduto) {
+		return false;
 	}
-
+	 
+	public List<Produto> consultarProdutosEmPromocao(List<Produto> produtosEmPromocao) {
+		return null;
+	}
+	public boolean cadastrarProduto() {
+		return false;
+	}
+	 
+	public List<Produto> consultarProdutos() {
+		return null;
+	}
+	 
+	public Produto alterarProduto() {
+		return null;
+	}
+	 
+	public boolean excluirProduto() {
+		return false;
+	}
+	 
+	public boolean atualizarEstoque() {
+		return false;
+	}
 }

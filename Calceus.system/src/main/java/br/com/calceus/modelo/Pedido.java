@@ -1,8 +1,9 @@
 package br.com.calceus.modelo;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 public class Pedido {
 
@@ -12,23 +13,17 @@ public class Pedido {
 	private double valorTotal;
 	private int idCliente;
 	private int posicaoLivre;;
-	private static  Pedido[] listaDePedidos;
+	private static Pedido[] listaDePedidos;
 
-	// Tabele ItemPedido
+	// Tabela ItemPedido
 	private int idItemPedido;
 	private int idProduto;
+	private List<ItemPedido> itens;
 
-	public Pedido(int idPedido, Calendar dataPedido, double valorTotal, int idCliente, int idItemPedido,
-			int idProduto) {
-		listaDePedidos = new Pedido[100];
-		this.idPedido = idPedido;
-		this.dataPedido = dataPedido;
-		this.valorTotal = valorTotal;
-		this.idCliente = idCliente;
-		this.idItemPedido = idItemPedido;
-		this.idProduto = idProduto;
+
+	public Pedido() {
 	}
-    public Pedido(){}
+
 	public int getIdPedido() {
 		return idPedido;
 	}
@@ -49,9 +44,6 @@ public class Pedido {
 		return idItemPedido;
 	}
 
-	public int getIdProduto() {
-		return this.idProduto;
-	}
 
 	public void adicionaPedido(Pedido novo) {
 
@@ -60,21 +52,31 @@ public class Pedido {
 	}
 
 	public static Pedido consultaPedido(int numero) {
-             Pedido achado = listaDePedidos[numero];
-       /// System.out.println();;
-			return achado;
-    }
-	
+		Pedido achado = listaDePedidos[numero];
+		/// System.out.println();;
+		return achado;
+	}
+
 	@Override
 	public String toString() {
-		
+
 		SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+
+		return "Pedido " + this.getIdPedido() + "\nData " + dataFormatada.format(getDataPedido().getTime())
+				+ "\nValor: " + this.getValorTotal() + "\nID Cliente " + this.getIdCliente();
+	}
+
+	public void adicionaItem(Produto p) {
+		getItens().add(new ItemPedido(p));
+	}
+	
+	public List<ItemPedido> getItens() {
+		if(itens != null){
+			return itens;
+		}else{
+			return itens = new ArrayList<ItemPedido>();
+		}
 		
-		return "Pedido " + this.getIdPedido() + "\nData " + dataFormatada.format(getDataPedido().getTime()) +"\nValor: " +this.getValorTotal() 
-		+ "\nID Cliente " + this.getIdCliente();
-	}
-         
-
 	}
 
-
+}
