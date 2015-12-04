@@ -14,27 +14,21 @@ import br.com.calceus.modelo.Marca;
 public class MarcaDAO {
 
 	public boolean salvar(Marca marca) {
-		Connection conn = GerenciadorDeConexoes.getConnection();
 		String sql = "INSERT INTO marca (marca) VALUES (?)";
-		PreparedStatement ps = null;
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, marca.getMarca());
-			ps.execute();
-			ps.close();
-			return true;
-		} catch (SQLException e) {
+		try(Connection conn = GerenciadorDeConexoes.getConnection()){
+		
+
+			try (PreparedStatement ps = conn.prepareStatement(sql)){
+				ps.setString(1, marca.getMarca());
+				ps.execute();
+			
+				return true;
+			} catch (SQLException e) {
 			System.out.println("Erro ao inserir no banco " + e.getMessage());
 			return false;
-		}finally {
-			try{
-				
-				conn.close();
-			}catch(Exception e){
-				System.out.println(e.getMessage());
+	
 			}
 		}
-
 	}
 
 	public List<Marca> listar() {
