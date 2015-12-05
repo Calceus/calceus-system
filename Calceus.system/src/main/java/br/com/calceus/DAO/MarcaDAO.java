@@ -13,7 +13,7 @@ import br.com.calceus.modelo.Marca;
 
 public class MarcaDAO {
 
-	public boolean salvar(Marca marca) {
+	public boolean salvar(Marca marca) throws SQLException {
 		String sql = "INSERT INTO marca (marca) VALUES (?)";
 		try(Connection conn = GerenciadorDeConexoes.getConnection()){
 		
