@@ -9,20 +9,22 @@ public class Cliente {
 	private String tipoCliente;
 	private String status;
 	protected String nome;
-	protected int cpf;
+	protected String cpf;
 	protected String sexo;
 	protected Calendar dataNascimento;
-	private int telefone;
-	private int celular;
+	private String telefone;
+	private String celular;
 	protected String email;
 	private String senha;
 
+	private Endereco endereco;
+	
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(int idCliente, String tipoCliente, String status, String nome, int cpf, String sexo,
-			Calendar dataNascimento, int telefone, int celular, String email) {
+	public Cliente(int idCliente, String tipoCliente, String status, String nome, String cpf, String sexo,
+			Calendar dataNascimento, String telefone, String celular, String email, Endereco endereco) {
 		this.idCliente = idCliente;
 		this.tipoCliente = tipoCliente;
 		this.status = status;
@@ -33,26 +35,27 @@ public class Cliente {
 		this.telefone = telefone;
 		this.celular = celular;
 		this.email = email;
+		this.endereco = endereco;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
-	public void setCelular(int celular) {
-		this.celular = celular;
+	public void setCelular(String string) {
+		this.celular = string;
 	}
 
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
+	public void setCpf(String string) {
+		this.cpf = string;
 	}
 
 	public void setEmail(String email) {
@@ -67,7 +70,7 @@ public class Cliente {
 		this.sexo = sexo;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return this.cpf;
 	}
 
@@ -122,8 +125,14 @@ public class Cliente {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
 	
+	public Endereco getEndereco() {
+		if(endereco == null)
+			return endereco = new Endereco();
+		
+		return endereco;
+	}
+		
 
 	@Override
 	public String toString() {

@@ -4,107 +4,203 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
-import br.com.calceus.conexao.GerenciadorDeConexoes;
+import com.mysql.jdbc.Statement;
+
+import br.com.calceus.conexao.ConnectionPool;
 import br.com.calceus.modelo.Cliente;
 
 public class ClienteDAO {
 
-	
+	public int adicionaCliente(Cliente cliente) {
 
-	public void adicionaCliente(Cliente cliente) {
-		
-		PreparedStatement pps = null;
-		
 		if (cliente == null) {
 			System.out.println("O valor passado não pode ser nulo");
 		}
-		try {
-			String comando = "INSERT INTO Cliente(tipoCliente, status, nome, cpf, sexo, dataNascimento, telefone, celular, email)" + "values(?,?,?,?,?,?,?,?,?)";
-			pps = getConnection().prepareStatement(comando);
-			pps.setString(1, cliente.getTipoCliente());
-			pps.setString(2, String.valueOf(cliente.getStatus()));
-			pps.setString(3, cliente.getNome());
-			pps.setInt(4, cliente.getCpf());
-			pps.setString(5, String.valueOf(cliente.getSexo()));
-			pps.setDate(6, new java.sql.Date(new java.util.Date(cliente.getDataNascimento().getTimeInMillis()).getTime()));
-			pps.setInt(7, cliente.getTelefone());
-			pps.setInt(8, cliente.getCelular());
-			pps.setString(9, cliente.getEmail());
-			
-			pps.execute();
-			pps.close();
+		try (Connection conexao = new ConnectionPool().getConnection()) {
+			String sql = "INSERT INTO Cliente(tipoCliente, status, nome, cpf, sexo, dataNascimento, telefone, celular, email, idEndereco, senha)"
+					+ "values(?,?,?,?,?,?,?,?,?,?,?)";
+
+			try (PreparedStatement pps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+				pps.setString(1, "VIP");
+				pps.setString(2, "A");
+				pps.setString(3, cliente.getNome());
+				pps.setString(4, cliente.getCpf());
+				pps.setString(5, cliente.getSexo());
+				pps.setDate(6, java.sql.Date.valueOf("1985-10-13"));
+//				pps.setDate(6, new java.sql.Date(cliente.getDataNascimento().getTimeInMillis()));
+				pps.setString(7, cliente.getTelefone());
+				pps.setString(8, cliente.getCelular());
+				pps.setString(9, cliente.getEmail());
+				pps.setInt(10, cliente.getEndereco().getIdEndereco());
+				pps.setString(11, cliente.getSenha());
+
+				pps.execute();
+				
+				ResultSet rs = pps.getGeneratedKeys();
+				int chave = 0;
+				while (rs.next()) {
+					chave = rs.getInt(1);
+				}
+				return chave;
+
+			}
 		} catch (SQLException e) {
 			System.out.println("Erro ao inserir dados no banco: " + e.getMessage());
-		} finally {
-			try {
-				getConnection().close();
-				System.out.println("Dados inseridos com sucesso");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				// e.printStackTrace();
-				System.out.println("Erro ao fechar a conexão com banco! " + e.getMessage());
-			}
-		}
-
-	}
-
-	public void alterarCliente() {
-	}
-
-	public void excluirCliente() {
-	}
-
-	public Cliente consultarCliente(int id)  {
-		PreparedStatement pps = null;
-		Connection conn = null;
-		ResultSet rs = null;
-		Cliente cliente = null;
-		try {
-			conn = this.getConnection();
-			pps = conn.prepareStatement("select * from Cliente where idCliente = ?");
-			pps.setInt(1, id);
-			rs = pps.executeQuery();
-			if (!rs.next()) {
-				throw new Exception("Não foi encontrado nenhum resultado para o ID:" + id);
-			}
-			int idCliente = rs.getInt(1);
-			String tipoCliente = rs.getString(2);
-			String status = rs.getString(3);
-			String nome = rs.getString(4);
-			int cpf = rs.getInt(5);
-			String sexo = rs.getString(6);
-			
-			Calendar dataNascimento = new GregorianCalendar();
-			dataNascimento.setTime(rs.getDate(7));
-
-			int telefone = rs.getInt(8);
-			int celular = rs.getInt(9);
-			String email = rs.getString(10);
-			
-			cliente = new Cliente(idCliente, tipoCliente, status, nome, cpf, sexo, dataNascimento, telefone, celular, email);
-			
-			rs.close();
-			pps.close();
-		} catch (SQLException e) {
-			System.out.println("Erro ao executar operação: " + e.getMessage());
+			return 0;
 		} catch (Exception e) {
-			// TODO: handle exception
-		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("Erro ao inserir dados no banco: " + e.getMessage());
+			return 0;
 		}
-		return cliente;
+
 	}
-	private Connection getConnection(){
-		Connection conn = GerenciadorDeConexoes.getConnection();
-		return conn;
+
+	public boolean alterarCliente(Cliente cliente) {
+		if (cliente == null) {
+			System.out.println("O valor passado não pode ser nulo");
+		}
+		try (Connection conexao = new ConnectionPool().getConnection()) {
+			String sql = "UPDATE Cliente SET tipoCliente = ?, status = ?, nome = ?, cpf = ?, sexo = ?, dataNascimento = ?, telefone = ?, celular = ?, email = ?, idEndereco = ? WHERE idCliente = ?";
+
+			try (PreparedStatement pps = conexao.prepareStatement(sql)) {
+
+				pps.setString(1, cliente.getTipoCliente());
+				pps.setString(2, cliente.getStatus());
+				pps.setString(3, cliente.getNome());
+				pps.setString(4, cliente.getCpf());
+				pps.setString(5, cliente.getSexo());
+				pps.setDate(6,
+						new java.sql.Date(new java.util.Date(cliente.getDataNascimento().getTimeInMillis()).getTime()));
+				pps.setString(7, cliente.getTelefone());
+				pps.setString(8, cliente.getCelular());
+				pps.setString(9, cliente.getEmail());
+				pps.setInt(10, cliente.getEndereco().getIdEndereco());
+				pps.setInt(11, cliente.getIdCliente());
+
+				pps.execute();
+
+				return true;
+
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao alterar dados no banco: " + e.getMessage());
+			return false;
+		} catch (Exception e) {
+			System.out.println("Erro ao alterar dados no banco: " + e.getMessage());
+			return false;
+		}
 	}
-	
+
+	public Cliente consultarCliente(int idCliente) {
+
+		Cliente cliente = null;
+		try (Connection conexao = new ConnectionPool().getConnection()) {
+			String sql = "SELECT * FROM cliente WHERE idCliente = ?";
+
+			try (PreparedStatement pps = conexao.prepareStatement(sql)) {
+
+				pps.setInt(1, idCliente);
+				ResultSet rs = pps.executeQuery();
+				if (!rs.next()) {
+					throw new Exception("Não foi encontrado nenhum resultado para o ID:" + idCliente);
+				}
+				cliente = new Cliente();
+
+				cliente.setIdCliente(rs.getInt("idCliente"));
+				cliente.setTipoCliente(rs.getString("tipoCliente"));
+				cliente.setStatus(rs.getString("status"));
+				cliente.setCpf(rs.getString("cpf"));
+				cliente.setSexo(rs.getString("sexo"));
+
+				Calendar dataNascimento = new GregorianCalendar();
+				dataNascimento.setTime(rs.getDate("dataNascimento"));
+				cliente.setDataNascimento(dataNascimento);
+
+				cliente.setTelefone(rs.getString("telefone"));
+
+				cliente.setCelular(rs.getString("celular"));
+
+				cliente.setEmail(rs.getString("email"));
+				cliente.getEndereco().setIdEndereco(rs.getInt("idEndereco"));
+
+				rs.close();
+
+				return cliente;
+
+			} catch (SQLException e) {
+				System.out.println("Erro ao executar operação: " + e.getMessage());
+				return null;
+			} catch (Exception e) {
+				System.out.println("Erro ao executar operação: " + e.getMessage());
+				return null;
+			}
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+	}
+
+	public boolean excluirCliente(int idCliente) {
+		try (Connection conexao = new ConnectionPool().getConnection()) {
+			String sql = "DELETE FROM cliente WHERE idCliente = ?";
+			try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+				stmt.setInt(1, idCliente);
+
+				stmt.execute();
+				return true;
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return false;
+		}
+	}
+
+	public static void main(String[] args) {
+		ClienteDAO dao = new ClienteDAO();
+
+		Cliente c = new Cliente();
+		c.setNome("Laercio");
+		c.setCpf("2345678900");
+		c.setEmail("laercio_ferraci@yahoo.com.br");
+		c.setCelular("11987654321");
+		c.setTelefone("1137896060");
+		c.setSenha("heineken");
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+		String dateInString = "13/10/1985";
+		Date date = null;
+		try {
+			date = sdf.parse(dateInString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Calendar dataNascimento = Calendar.getInstance();
+		dataNascimento.setTime(date);
+		c.setDataNascimento(dataNascimento);
+		c.getEndereco().setIdEndereco(1);
+
+		System.out.println("Cadastrando cliente: " + c.toString());
+		int chave = dao.adicionaCliente(c);
+		System.out.println("consultando cliente: " + chave);
+		c.setEmail("laercio_ferracini@yahoo.com.br");
+		if (dao.alterarCliente(c))
+			System.out.println("Alterando cliente: " + dao.consultarCliente(chave).toString());
+		else
+			System.out.println("Errors fuck");
+
+//		if (dao.excluirCliente(chave)) {
+//			System.out.println("Excluindo cliente");
+//		}
+	}
+
 }
