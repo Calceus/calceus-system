@@ -39,14 +39,25 @@ public class Marca {
 
 	public boolean salvar(Marca marca) throws SQLException {
 		dao = new MarcaDAO();
-		return dao.salvar(marca);
+		try {
+			return dao.salvar(marca);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public List<String> listar() throws SQLException {
 		List<String> marcas = new ArrayList<String>();
 		dao = new MarcaDAO();
-		for (Marca m : dao.listar()) {
-			marcas.add(m.getMarca());
+		try {
+			for (Marca m : dao.listar()) {
+				marcas.add(m.getMarca());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return marcas;
 	}
