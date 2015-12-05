@@ -23,7 +23,7 @@ public class ProdutoDAO {
 				stmt.setDouble(6, produto.getValor());
 				stmt.setLong(7, produto.getGenero());
 				stmt.setInt(8, produto.getIdItemProduto());
-				stmt.setInt(9, produto.getIdMarca());
+				stmt.setInt(9, produto.getMarca().getIdMarca());
 				stmt.execute();
 				return true;
 			}

@@ -11,7 +11,7 @@ public class Produto {
 	private int idCategoria;
 	private int idFornecedor;
 	private int idItemProduto;
-	private int idMarca;
+	private Marca marca;
 	private char genero;
 
 	public Produto() {
@@ -28,7 +28,8 @@ public class Produto {
 	}
 
 	public Produto(int idProduto, String nomeProduto, int idCategoria,
-			int idFornecedor, int idItemProduto, int quantidade, double valor, int idMarca) {
+			int idFornecedor, int idItemProduto, int quantidade, double valor,
+			Marca marca) {
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
 		this.idCategoria = idCategoria;
@@ -36,14 +37,16 @@ public class Produto {
 		this.idItemProduto = idItemProduto;
 		this.quantidade = quantidade;
 		this.valor = valor;
-		this.idMarca = idMarca;
+		this.marca = marca;
 
 	}
 
-
-
 	public Produto(int idProduto2) {
 		this.idProduto = idProduto2;
+	}
+
+	public Marca getMarca() {
+		return marca;
 	}
 
 	public int getIdProduto() {
@@ -77,9 +80,7 @@ public class Produto {
 	public int getIdItemProduto() {
 		return idItemProduto;
 	}
-	public int getIdMarca() {
-		return idMarca;
-	}
+
 	public boolean verificarDisponibilidade(int idProduto) {
 		return false;
 	}
@@ -109,5 +110,4 @@ public class Produto {
 		return false;
 	}
 
-	
 }
