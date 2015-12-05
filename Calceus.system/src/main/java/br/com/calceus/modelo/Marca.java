@@ -37,7 +37,7 @@ public class Marca {
 		this.marca = marca;
 	}
 
-	public boolean salvar(Marca marca) {
+	public boolean salvar(Marca marca) throws SQLException {
 		dao = new MarcaDAO();
 		try {
 			return dao.salvar(marca);
@@ -48,7 +48,7 @@ public class Marca {
 		}
 	}
 
-	public List<String> listar() {
+	public List<String> listar() throws SQLException {
 		List<String> marcas = new ArrayList<String>();
 		dao = new MarcaDAO();
 		try {
@@ -61,7 +61,7 @@ public class Marca {
 		}
 		return marcas;
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		Marca m = new Marca();
 		System.out.println("Listando:" + m.listar());
 	}
