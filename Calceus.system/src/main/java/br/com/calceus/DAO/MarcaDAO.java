@@ -37,7 +37,7 @@ public class MarcaDAO {
 		List<Marca> marcas = new ArrayList<Marca>();
 		String sql = "SELECT * FROM Marca";
 		try (Connection conn = new ConnectionPool().getConnection()) {
-
+           
 			try (Statement st = conn.createStatement()) {
 				try (ResultSet rs = st.executeQuery(sql)) {
 					while (rs.next()) {
