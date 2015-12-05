@@ -1,5 +1,6 @@
 package br.com.calceus.modelo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +37,12 @@ public class Marca {
 		this.marca = marca;
 	}
 
-	public boolean salvar(Marca marca) {
+	public boolean salvar(Marca marca) throws SQLException {
 		dao = new MarcaDAO();
 		return dao.salvar(marca);
 	}
 
-	public List<String> listar() {
+	public List<String> listar() throws SQLException {
 		List<String> marcas = new ArrayList<String>();
 		dao = new MarcaDAO();
 		for (Marca m : dao.listar()) {
@@ -49,7 +50,7 @@ public class Marca {
 		}
 		return marcas;
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		Marca m = new Marca();
 		System.out.println("Listando:" + m.listar());
 	}
