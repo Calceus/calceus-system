@@ -2,6 +2,7 @@ package br.com.calceus.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.calceus.conexao.ConnectionPool;
@@ -33,5 +34,36 @@ public class ProdutoDAO {
 			return false;
 		}
 
+	}
+
+	public Produto consultarProduto(int idProduto) {
+		String sql = "SELECT *  FROM produto where idProduto = ?";
+		Produto produto = null;
+		try (Connection conexao = new ConnectionPool().getConnection()) {
+			try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+				stmt.setInt(1, idProduto);
+				ResultSet resultado = stmt.executeQuery();
+				while (resultado.next()) {
+					produto = new Produto();
+					produto.setIdProduto(resultado.getInt("idProduto"));
+					produto.setIdFornecedor(resultado.getInt("idFornecedor"));
+					produto.setIdCategoria(resultado.getInt("idCategoria"));
+					produto.setNomeProduto(resultado.getString("nomeProduto"));
+					produto.setQuantidade(resultado.getInt("quantidade"));
+					produto.setValor(resultado.getDouble("valor"));
+					produto.setGenero(resultado.getLong("genero"));
+					produto.setIdItemProduto(resultado.getInt("idItemProduto"));
+					produto.getMarca().setIdMarca(resultado.getInt("idMarca"));
+					
+				}
+			}
+			
+		
+
+		} catch (SQLException e) {
+			System.out
+					.println("Erro ao fazer busca no banco " + e.getMessage());	
+		}
+	   return produto;
 	}
 }

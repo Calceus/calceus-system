@@ -110,4 +110,41 @@ public class Produto {
 		return false;
 	}
 
+	public void setIdFornecedor(int idFornecedor) {
+		this.idFornecedor = idFornecedor;
+	}
+
+	public void setIdProduto(int idFornecedor) {
+		this.idProduto = idFornecedor;
+
+	}
+
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
+
+	}
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+	public void setGenero(long genero) {
+		this.genero = (char) genero; 
+		
+	}
+
+	public void setIdItemProduto(int idItemProduto) {
+		this.idItemProduto = idItemProduto; 
+		
+	}
+
 }
