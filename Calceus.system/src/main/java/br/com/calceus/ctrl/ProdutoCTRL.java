@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.calceus.modelo.Categoria;
 import br.com.calceus.modelo.Marca;
+import br.com.calceus.modelo.Produto;
 
 public class ProdutoCTRL {
 
@@ -25,4 +26,9 @@ public class ProdutoCTRL {
 		Categoria c = new Categoria();
 		return c.listar();
 	}
+	public Produto listarProduto(int idProduto) {
+		Produto produto = new Produto();
+		return produto.consultarProduto(idProduto);
+	}
+	
 }

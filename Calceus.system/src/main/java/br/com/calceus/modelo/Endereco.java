@@ -88,6 +88,11 @@ public class Endereco {
 		EnderecoDAO dao = new EnderecoDAO();
 		return dao.buscaCep(cep);
 	}
+	public String buscarCep(String cep){
+		EnderecoDAO dao = new EnderecoDAO();
+		dao.buscaCep(cep);
+		return "ok";
+	}
 	public int cadastrarEndereco(Endereco e){
 		EnderecoDAO dao = new EnderecoDAO();
 		return dao.cadastrarEndereco(e);

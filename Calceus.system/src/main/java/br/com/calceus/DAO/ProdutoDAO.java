@@ -54,16 +54,13 @@ public class ProdutoDAO {
 					produto.setGenero(resultado.getLong("genero"));
 					produto.setIdItemProduto(resultado.getInt("idItemProduto"));
 					produto.getMarca().setIdMarca(resultado.getInt("idMarca"));
-					
+
 				}
 			}
-			
-		
 
 		} catch (SQLException e) {
-			System.out
-					.println("Erro ao fazer busca no banco " + e.getMessage());	
+			System.out.println("Erro ao fazer busca no banco " + e.getMessage());
 		}
-	   return produto;
+		return produto;
 	}
 }

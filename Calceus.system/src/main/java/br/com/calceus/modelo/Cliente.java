@@ -1,6 +1,9 @@
 package br.com.calceus.modelo;
 
 import java.util.Calendar;
+import java.util.Date;
+
+import br.com.calceus.DAO.ClienteDAO;
 
 
 public class Cliente {
@@ -16,7 +19,9 @@ public class Cliente {
 	private String celular;
 	protected String email;
 	private String senha;
-
+	
+	private Date data;
+	
 	private Endereco endereco;
 	
 	public Cliente() {
@@ -132,11 +137,39 @@ public class Cliente {
 		
 		return endereco;
 	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	private void dateToCalendar(Date data) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		setDataNascimento(cal);
+	}
+	
+	public Date getData() {
+		return data;
+	}
+	
+	private void calendarToDate() {
+		setData(getDataNascimento().getTime());
 		
+	}
 
 	@Override
 	public String toString() {
 		return "Cliente " + this.getNome();
+	}
+
+	public boolean cadastrarCliente(Cliente cliente) {
+		ClienteDAO dao = new ClienteDAO();
+		int retorno = dao.cadastrarCliente(cliente);
+		if(retorno == 0){
+			return false;
+		}else{
+			return true;
+		}
+		
 	}
 
 }
