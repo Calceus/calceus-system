@@ -17,7 +17,7 @@ public class Login {
 	
 	public boolean autentica(){
 		dao = new LoginDAO();
-		return dao.autentica(this);
+		return dao.autenticaFuncionario(this);
 	}
 	public String getUsuario() {
 		return usuario;
@@ -26,5 +26,9 @@ public class Login {
 		return senha;
 	}
 	
-	
+	public boolean autenticaCliente(){
+		dao = new LoginDAO();
+		System.out.println(usuario+senha);
+		return dao.autenticaCliente(this);
+	}
 }

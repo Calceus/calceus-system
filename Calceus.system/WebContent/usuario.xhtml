@@ -26,11 +26,11 @@
 
 								<!-- Nav -->
 									<nav id="nav">
-										<a href="index.html">Home</a>
-										<a href="empresa.html">Institucional</a>
-										<a href="masculino.html">Masculino</a>
-										<a href="feminino.html">Feminino</a>
-										<a href="infantil.html">Infantil</a>
+										<a href="index.xhtml">Home</a>
+										<a href="empresa.xhtml">Institucional</a>
+										<a href="masculino.xhtml">Masculino</a>
+										<a href="feminino.xhtml">Feminino</a>
+										<a href="infantil.xhtml">Infantil</a>
 									</nav>
 
 							</div>
@@ -108,13 +108,14 @@
     										<f:validateRegex pattern="(^[0-9]{2}\.?[0-9]{3}{1}[0-9]{3})" />
   										</p:inputText>
   										<h:outputText value="#{cliente.cliente.endereco.cep}"/>
-  										<h:commandButton value="Pesquisar" action="#{cliente.cliente.endereco.buscarCep}" update="grid" icon="ui-icon-check" validateClient="true">
-  											<f:ajax render="dadosCliente grid logradouro" execute="cep" />
+  										
+  										<h:commandButton value="Pesquisar" action="#{cliente.cliente.endereco.buscarCep}" >
+  											<f:ajax render="@form" execute="cep logradouro bairro cidade estado" />
   										</h:commandButton>
   										
   										
   										<h:outputLabel for="logradouro" value="Endereço:" />                    
-							            <p:inputText id="logradouro" value="#{cliente.cliente.endereco.logradouro}" required="true" label="Endereço"/>
+							            <p:inputText id="logradouro" value="#{cliente.cliente.endereco.logradouro}" size="40"required="true" label="Endereço"/>
 							            <p:message for="logradouro" />
 							            <h:outputText value="#{cliente.cliente.endereco.logradouro}" />
 							            
@@ -147,11 +148,6 @@
 							        </h:panelGrid>
 							        
 							 		<p:commandButton update="grid" action="#{cliente.salvar}" value="Salvar" />
-							 		
-							        <p:commandButton value="Non-Ajax" ajax="false" icon="ui-icon-check" validateClient="true" style="margin-right:10px"/>
-							        <p:commandButton value="Ajax" update="grid" icon="ui-icon-check" validateClient="true" style="margin-right:10px"/>
-							        <p:commandButton value="Partial" update="grid" process="Nome email" validateClient="true" icon="ui-icon-check" style="margin-right:10px"/>
-							        
 							    </p:panel>
 							</h:form>
 							<hr />
@@ -222,7 +218,7 @@
 										<h2>Central de atendimento 4003-0000</h2>
 										<p>
 											Duvidas   sobre cadastro, Pedidos, formas de pagamento, prazos entrega?
-											Clique <a href="faq.html"><strong>aqui</strong></a> e tire suas dúvidas.
+											Clique <a href="faq.xhtml"><strong>aqui</strong></a> e tire suas dúvidas.
 										</p>
 										<section>
 										  <div class="row">

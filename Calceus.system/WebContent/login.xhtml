@@ -1,53 +1,194 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"  
-    xmlns:f="http://java.sun.com/jsf/core" 
-	xmlns:p="http://primefaces.org/ui" >
-	
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Login</title>
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Template Bootstrap</title>
+	<link rel="stylesheet" href="assets/css/main.css" />
 </h:head>
 <h:body>
-	<h1 class="title">Login</h1>
 
-	<h:form>            
-	    <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-	        <p:graphicImage name="images/login.png" />
-	    </h:outputLink>
-	 
-	    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-	 
-	    <p:dialog header="Login" widgetVar="dlg" resizable="false">
-	        <h:panelGrid columns="2" cellpadding="5">
-	            <h:outputLabel for="email" value="Email:" />
-	            <p:inputText id="email" value="#{usuario.email}" required="true" label="email" />
-	 
-	            <h:outputLabel for="password" value="Password:" />
-	            <p:password id="senha" value="#{usuario.senha}" required="true" label="senha" />
-	 
-	            <f:facet name="footer">
-	                <p:commandButton value="Login" update="growl" actionListener="#{usuario.login}"
-	                                 oncomplete="handleLoginRequest(xhr, status, args)" />
-	            </f:facet>  
-	        </h:panelGrid>
-	    </p:dialog>
-	</h:form>
- 
+	<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<header id="header" class="container">
+						<div class="row">
+							<div class="12u">
+
+								<!-- Logo -->
+									<h1><a href="#" id="logo"><img src="images/calceus-logo-4.png"/></a></h1>
+
+								<!-- Nav -->
+									<nav id="nav">
+										<a href="index.xhtml">Home</a>
+										<a href="empresa.xhtml">Institucional</a>
+										<a href="masculino.xhtml">Masculino</a>
+										<a href="feminino.xhtml">Feminino</a>
+										<a href="infantil.xhtml">Infantil</a>
+									</nav>
+
+							</div>
+						</div>
+					</header>
+				</div>
+
+			<!-- Content -->
+				<div id="content-wrapper">
+					<div id="content">
+						<div class="container">
+							<div class="row">
+								<div class="6u">
+									<h1 class="title">Login</h1>
+		
+									<h:form>            
+								
+										<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+									 
+									    <h:panelGrid columns="2" cellpadding="5">
+								            <h:outputLabel for="email" value="Email:" />
+								            <p:inputText id="email" value="#{login.email}" required="true" label="email" />
+								 
+								            <h:outputLabel for="senha" value="Senha:" />
+								            <p:password id="senha" value="#{login.senha}" required="true" label="senha" />
+								            <h:link value="Esqueci a senha" outcome="recupera"/>
+								 			<f:facet name="footer">
+								 				
+								            	<p:commandButton value="Login" update="growl" actionListener="#{login.login}" oncomplete="handleLoginRequest(xhr, status, args)" />
+								            </f:facet>
+								        </h:panelGrid>
+									    
+									</h:form>
+								</div>
+								<div  class="6u">
+									<h1 class="title">Cadastro</h1>
+		
+									<h:form>            
+								
+										<p:growl id="cadastro" sticky="true" showDetail="true" life="3000" />
+									 
+									    <h:panelGrid columns="2" cellpadding="5">
+								            <h:outputLabel for="emailCadastro" value="Email:" />
+								            <p:inputText id="emailCadastro" value="#{cliente.cliente.email}" required="true" label="emailCadastro" />
+								 			<h:outputLabel />
+								            <p:commandButton value="Cadastrar" update="cadastro" actionListener="cadastroUsuario.xhtml" />
+								        
+								        </h:panelGrid>
+									    
+									</h:form>
+								</div>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="8u 12u(mobile)">
+
+								<!-- Links -->
+									<section>
+
+										<div>
+											<div class="row">
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><h2>Mapa do site</h2></li>
+														<li><a href="#">Home</a></li>
+														<li><a href="#">Empresa</a></li>
+														<li><a href="#">Masculino</a></li>
+														<li><a href="#">Feminino</a></li>
+														<li><a href="#">Infantil</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><h2>Parceiros</h2></li>
+														<li><a href="#">Anon Dev.com</a></li>
+														<li><a href="#">Loja.com</a></li>
+														<li><a href="#">Calceus.com.br</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><h2>Institucional</h2></li>
+														<li><a href="#">Sobre a Calceus</a></li>
+														<li><a href="#">Marcas Recomendadas</a></li>
+														<li><a href="#">Trabalhe Conosco</a></li>
+														<li><a href="#">Parcerias Internacionais</a></li>
+														<li><a href="#">Programas Trainne</a></li>
+													</ul>
+												</div>
+												<div class="3u 12u(mobile)">
+													<ul class="link-list last-child">
+														<li><h2>Duvidas</h2></li> 
+														<li><a href="#">Como comprar</a></li>
+														<li><a href="#">Sobre Entrega</a></li>
+														<li><a href="#">Política de Troca e Devoluções</a></li>
+														<li><a href="#">Política de Privacidade</a></li>
+														<li><a href="#">Nota fiscal Paulista</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</section>
+
+							</div>
+							
+					        <div class="4u 12u(mobile)">
+
+								<!-- Blurb -->
+									<section>
+									<div class="row">
+										<h2>Central de atendimento 4003-0000</h2>
+										<p>
+											Duvidas   sobre cadastro, Pedidos, formas de pagamento, prazos entrega?
+											Clique <a href="faq.xhtml"><strong>aqui</strong></a> e tire suas dúvidas.
+										</p>
+										<section>
+										  <div class="row">
+										       <h2>Formas de pagamento</h2>
+										       <ul class="lista-pagamento">
+												 <li class="lista-pagamento-item"><img src = "images/brands/visa-logo-mini.png" alt = ""/></li>
+												 <li class="lista-pagamento-item"><img src = "images/brands/master-card-logo-mini.png" alt = ""/></li>
+												 <li class="lista-pagamento-item"><img src = "images/brands/amex-logo-mini.png" alt = ""/></li>
+												 <li class="lista-pagamento-item"><img src = "images/brands/boleto-mini.png" alt = ""/></li>
+										       </ul>
+										  </div>
+										</section>
+									</div>
+									</section>
+
+							</div> 
+						</div>
+					</footer>
+				</div>
+			
+			<!-- Copyright -->
+				<div id="copyright">
+					<ul class="social copyright">
+						<li>CALCEUS. Todos os direitos reservados. | Design: <a href="">AnonDEV</a></li>
+						<li><a href="http://facebook.com/calceusfootwear">Facebook</a></li>
+						<li><a href="http://twitter.com/calceusfootwear">Twitter</a></li>
+						<li><a href="http://google.com/calceusfootwear">Google+</a></li>
+						<li><a href="http://instagram.com/calceusfootwear">Instagram</a></li>
+					</ul>
+				</div>
+
+		</div>
 		<script type="text/javascript">
-	    function handleLoginRequest(xhr, status, args) {
-	        if(args.validationFailed || !args.loggedIn) {
-	            PF('dlg').jq.effect("shake", {times:5}, 100);
-	        }
-	        else {
-	            PF('dlg').hide();
-	            $('#loginLink').fadeOut();
-	        }
-	    }
-	</script>
-
+		    function handleLoginRequest(xhr, status, args) {
+		        if(args.validationFailed || !args.loggedIn) {
+		            PF('dlg').jq.effect("shake", {times:5}, 100);
+		        }
+		    }
+		</script>
+	
 </h:body>
-
 </html>

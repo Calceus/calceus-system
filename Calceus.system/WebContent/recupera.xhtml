@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Template Bootstrap</title>
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -40,7 +40,31 @@
 				<div id="content-wrapper">
 					<div id="content">
 						<div class="container">
-							
+							<div class="row">
+								
+									
+		
+								<div  class="6u">
+									<h1 class="title">Recuperação de Senha</h1>
+									<p>
+										Insira o email que você fez o cadastro
+									</p>
+									<h:form>            
+								
+										<p:growl id="cadastro" sticky="true" showDetail="true" life="3000" />
+									 
+									    <h:panelGrid columns="2" cellpadding="5">
+								            <h:outputLabel for="emailCadastro" value="Email:" />
+								            <p:inputText id="emailCadastro" value="#{cliente.cliente.email}" required="true" label="emailCadastro" />
+								 			<h:outputLabel />
+								            <p:commandButton value="Cadastrar" update="cadastro" actionListener="cadastroUsuario.xhtml" />
+								        
+								        </h:panelGrid>
+									    
+									</h:form>
+								
+							</div>
+							</div>
 						</div>
 					</div>
 				</div>

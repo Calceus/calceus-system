@@ -25,11 +25,11 @@
 
 								<!-- Nav -->
 									<nav id="nav">
-										<a href="index.html">Home</a>
-										<a href="empresa.html">Institucional</a>
-										<a href="masculino.html">Masculino</a>
-										<a href="feminino.html">Feminino</a>
-										<a href="infantil.html">Infantil</a>
+										<a href="index.xhtml">Home</a>
+										<a href="empresa.xhtml">Institucional</a>
+										<a href="masculino.xhtml">Masculino</a>
+										<a href="feminino.xhtml">Feminino</a>
+										<a href="infantil.xhtml">Infantil</a>
 									</nav>
 
 							</div>
@@ -41,26 +41,15 @@
 				<div id="content-wrapper">
 					<div id="content">
 						<div class="container">
-							<div class="row">
-								<div class="12u">
-
-									<!-- Main Content -->
-										<h1>Usuario Cadastrado</h1>
-										<p>
-											Nome: <h:outputText  value="#{usuarioBean.nome}"/>
-										</p>
-										<p>
-											Email: <h:outputLink value="mailto:#{usuarioBean.email}"><h:outputText  value="#{usuarioBean.email}"/></h:outputLink>
-										</p>
-										<p>
-											Senha: <h:outputText  value="#{usuarioBean.senha}"/>
-										</p>
-										<h:form>
-											<h:commandLink action="inicio" value="Início"/>
-										</h:form>
-
-								</div>
-							</div>
+							<!-- Main Content -->
+							<h1 class="titulo-grande">Cadastro realizado com sucesso!</h1>
+							<p>Bem vindo</p>
+							<p class="nome-cliente">
+								Nome: <h:outputText  value="#{cliente.cliente.nome}"/>
+							</p>
+							<h:form>
+								<h:commandLink  value="Início" />
+							</h:form>
 						</div>
 					</div>
 				</div>
@@ -128,7 +117,7 @@
 										<h2>Central de atendimento 4003-0000</h2>
 										<p>
 											Duvidas   sobre cadastro, Pedidos, formas de pagamento, prazos entrega?
-											Clique <a href="faq.html"><strong>aqui</strong></a> e tire suas dúvidas.
+											Clique <a href="faq.xhtml"><strong>aqui</strong></a> e tire suas dúvidas.
 										</p>
 										<section>
 										  <div class="row">

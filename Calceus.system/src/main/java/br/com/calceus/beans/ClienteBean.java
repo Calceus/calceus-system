@@ -7,7 +7,6 @@ import javax.faces.context.FacesContext;
 
 import br.com.calceus.ctrl.ManterCadastroClienteCTRL;
 import br.com.calceus.modelo.Cliente;
-import br.com.calceus.modelo.Endereco;
 
 @ManagedBean(name = "cliente")
 @RequestScoped
@@ -46,18 +45,21 @@ public class ClienteBean {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha confirmada incorretamente", ""));
 			return "usuario";
 		} else {
-			System.out.println("Salvando...");
+//			System.out.println("Salvando...");
 			ManterCadastroClienteCTRL ctrl = new ManterCadastroClienteCTRL();
-			System.out.println(getCliente().getNome());
+//			System.out.println(getCliente().getNome());
 			if (ctrl.cadastrarCliente(this.getCliente())) {
 				return "sucesso";
 			} else {
 				context.addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao cadastrar Cliente", ""));
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao cadastrar Cliente", ":("));
 				return "usuario";
 			}
 		}
 
+	}
+	public String novo(){
+		return "usuario";
 	}
 
 }

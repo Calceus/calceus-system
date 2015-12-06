@@ -14,7 +14,8 @@ public class LoginCTRL {
 	public boolean autentica(String usuario, String senha){
 		
 		Login login = new Login(usuario, senha);
-		return login.autentica();
+		
+		return login.autenticaCliente();
 	}
 	
 }
