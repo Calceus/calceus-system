@@ -2,6 +2,8 @@ package br.com.calceus.modelo;
 
 import java.util.List;
 
+import br.com.calceus.DAO.ProdutoDAO;
+
 public class Produto {
 
 	private int idProduto;
@@ -145,6 +147,12 @@ public class Produto {
 	public void setIdItemProduto(int idItemProduto) {
 		this.idItemProduto = idItemProduto; 
 		
+	}
+
+	public Produto consultarProduto(int idProduto2) {
+		ProdutoDAO dao = new ProdutoDAO();
+		
+		return dao.consultarProduto(idProduto2);
 	}
 
 }

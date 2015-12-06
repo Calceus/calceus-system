@@ -17,7 +17,7 @@ import br.com.calceus.modelo.Cliente;
 
 public class ClienteDAO {
 
-	public int adicionaCliente(Cliente cliente) {
+	public int cadastrarCliente(Cliente cliente) {
 
 		if (cliente == null) {
 			System.out.println("O valor passado não pode ser nulo");
@@ -33,7 +33,7 @@ public class ClienteDAO {
 				pps.setString(3, cliente.getNome());
 				pps.setString(4, cliente.getCpf());
 				pps.setString(5, cliente.getSexo());
-				pps.setDate(6, java.sql.Date.valueOf("1985-10-13"));
+				pps.setDate(6, new java.sql.Date(cliente.getData().getTime()));
 //				pps.setDate(6, new java.sql.Date(cliente.getDataNascimento().getTimeInMillis()));
 				pps.setString(7, cliente.getTelefone());
 				pps.setString(8, cliente.getCelular());
@@ -163,44 +163,44 @@ public class ClienteDAO {
 		}
 	}
 
-	public static void main(String[] args) {
-		ClienteDAO dao = new ClienteDAO();
-
-		Cliente c = new Cliente();
-		c.setNome("Laercio");
-		c.setCpf("2345678900");
-		c.setEmail("laercio_ferraci@yahoo.com.br");
-		c.setCelular("11987654321");
-		c.setTelefone("1137896060");
-		c.setSenha("heineken");
-
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
-		String dateInString = "13/10/1985";
-		Date date = null;
-		try {
-			date = sdf.parse(dateInString);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Calendar dataNascimento = Calendar.getInstance();
-		dataNascimento.setTime(date);
-		c.setDataNascimento(dataNascimento);
-		c.getEndereco().setIdEndereco(1);
-
-		System.out.println("Cadastrando cliente: " + c.toString());
-		int chave = dao.adicionaCliente(c);
-		System.out.println("consultando cliente: " + chave);
-		c.setEmail("laercio_ferracini@yahoo.com.br");
-		if (dao.alterarCliente(c))
-			System.out.println("Alterando cliente: " + dao.consultarCliente(chave).toString());
-		else
-			System.out.println("Errors fuck");
-
+//	public static void main(String[] args) {
+//		ClienteDAO dao = new ClienteDAO();
+//
+//		Cliente c = new Cliente();
+//		c.setNome("Laercio");
+//		c.setCpf("2345678900");
+//		c.setEmail("laercio_ferraci@yahoo.com.br");
+//		c.setCelular("11987654321");
+//		c.setTelefone("1137896060");
+//		c.setSenha("heineken");
+//
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+//		String dateInString = "13/10/1985";
+//		Date date = null;
+//		try {
+//			date = sdf.parse(dateInString);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		Calendar dataNascimento = Calendar.getInstance();
+//		dataNascimento.setTime(date);
+//		c.setDataNascimento(dataNascimento);
+//		c.getEndereco().setIdEndereco(1);
+//
+//		System.out.println("Cadastrando cliente: " + c.toString());
+//		int chave = dao.adicionaCliente(c);
+//		System.out.println("consultando cliente: " + chave);
+//		c.setEmail("laercio_ferracini@yahoo.com.br");
+//		if (dao.alterarCliente(c))
+//			System.out.println("Alterando cliente: " + dao.consultarCliente(chave).toString());
+//		else
+//			System.out.println("Errors fuck");
+//
 //		if (dao.excluirCliente(chave)) {
 //			System.out.println("Excluindo cliente");
 //		}
-	}
+//	}
 
 }

@@ -24,6 +24,9 @@ public class ProdutoDAO {
 		} else {
 			System.out.println("erro");
 		}
+		Produto produto2 = produtoDAO.consultarProduto(1);
+			System.out.println(produto2);
+		
 
 	}
 
