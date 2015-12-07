@@ -19,16 +19,8 @@ public class ComprarProdutoCTRL {
 
 	}
 
-	public List<Produto> consultarNotaFiscalEntrada(int notaFiscal) {
+	public List<Produto> consultarProdutosNotaFiscal(int notaFiscal) {
 		compra = new Compra();
-		int idCompra = compra.consultarNotaFiscalEntrada(notaFiscal);
-		return consultarProdutos(idCompra);
-
-	}
-
-	private List<Produto> consultarProdutos(int idCompra) {
-		compra = new Compra();
-		return compra.consultarProdutos(idCompra);
-
+		return compra.consultarProdutosNotaFiscal(notaFiscal);
 	}
 }

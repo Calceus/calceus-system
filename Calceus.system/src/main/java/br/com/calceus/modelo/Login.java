@@ -15,7 +15,7 @@ public class Login {
 		this.senha = senha;
 	}
 	
-	public boolean autentica(){
+	public boolean autenticaFuncionario(){
 		dao = new LoginDAO();
 		return dao.autenticaFuncionario(this);
 	}

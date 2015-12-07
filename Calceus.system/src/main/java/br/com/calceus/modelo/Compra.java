@@ -9,7 +9,8 @@ public class Compra {
 	private int idCompra;
 	private int numPedido;
 	private int idFuncionario;
-
+	private ItemCompra itemCompra;
+	
 	private CompraDAO dao;
 
 	public Compra() {
@@ -48,18 +49,13 @@ public class Compra {
 		this.dao = dao;
 	}
 
-	public int consultarNotaFiscalEntrada(int notaFiscal) {
+	public List<Produto> consultarProdutosNotaFiscal(int notaFiscal) {
 		dao = new CompraDAO();
-
-		return dao.consultarNotaFiscalEntrada(notaFiscal);
+		itemCompra = new ItemCompra();
+		return itemCompra.consultarProdutosNotaFiscal(notaFiscal);
 
 	}
 
-	public List<Produto> consultarProdutos(int idCompra) {
-		dao = new CompraDAO();
-		return dao.consultarProdutos(idCompra);
-
-	}
 
 	public boolean consultarNotaFiscal(int notaFiscal) {
 		dao = new CompraDAO();

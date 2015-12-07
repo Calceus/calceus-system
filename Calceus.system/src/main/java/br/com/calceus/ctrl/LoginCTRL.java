@@ -6,16 +6,22 @@ import br.com.calceus.modelo.Login;
 public class LoginCTRL {
 
 	private Funcionario funcionario;
-	
+
 	public LoginCTRL() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public boolean autentica(String usuario, String senha){
-		
+
+	public boolean autentica(String usuario, String senha) {
+
 		Login login = new Login(usuario, senha);
-		
+
 		return login.autenticaCliente();
 	}
-	
+
+	public boolean autenticaFuncionario(String usuario, String senha) {
+
+		Login login = new Login(usuario, senha);
+
+		return login.autenticaFuncionario();
+	}
 }
