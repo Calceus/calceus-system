@@ -51,17 +51,17 @@
 							        <p:messages autoUpdate="true"/>
 							 
 							        <h:panelGrid id="grid" columns="4" cellpadding="5" margin="5">
-							            <h:outputLabel for="Nome" value="Nome:" />                    
-							            <p:inputText id="Nome" value="#{cliente.cliente.nome}" required="true" label="Nome"/>
-							            <p:message for="Nome" />
-							            <h:outputText value="#{cliente.cliente.nome}" />
+							            <h:outputLabel for="nome" value="Nome:" />                    
+							            <p:inputText id="nome" value="#{cliente.cliente.nome}" required="true" label="Nome"/>
+							            <p:message for="nome" />
+							            <!--<h:outputText value="#{cliente.cliente.nome}" />-->
 							            
 							            <h:outputLabel for="cpf" value="CPF:" />                    
 							            <p:inputText id="cpf" value="#{cliente.cliente.cpf}" required="true" label="CPF">
 							            	 <f:validateRegex pattern="(^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-{1}[0-9]{2})" />
 							            </p:inputText>
 							            <p:message for="cpf" />
-							            <h:outputText value="#{cliente.cliente.cpf}" />
+							            <!--<h:outputText value="#{cliente.cliente.cpf}" />-->
 							            
 							            <h:outputLabel for="sexo" value="Sexo:" />                    
 						             	<p:selectOneMenu id="sexo" value="#{cliente.cliente.sexo}">
@@ -70,31 +70,31 @@
 								            <f:selectItem itemLabel="Masculino" itemValue="M" />
 							       	 	</p:selectOneMenu>
 							            <p:message for="sexo" />
-							            <h:outputText value="#{cliente.cliente.sexo}" />
+							            <!--<h:outputText value="#{cliente.cliente.sexo}" />-->
 							            
 							            <h:outputLabel for="email" value="Email:" />                    
 							            <p:inputText id="email" value="#{cliente.cliente.email}" required="true" validatorMessage="Email incorreto">
 							                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 							            </p:inputText>
 							            <p:message for="email" />
-							            <h:outputText value="#{cliente.cliente.email}" />
+							            <!--<h:outputText value="#{cliente.cliente.email}" />-->
 							 
 							            <h:outputLabel for="dateNasc" value="Data Nascimento" />
 							            <p:calendar id="dateNasc" value="#{cliente.cliente.data}" pattern="dd/MM/yyyy" mask="true" label="Date"/>
 							            <p:message for="dateNasc" />
-							            <h:outputText value="#{cliente.cliente.data}" >
+							           <!-- <h:outputText value="#{cliente.cliente.data}" >
 							            	<f:convertDateTime pattern="dd/MM/yyyy"/>
-							            </h:outputText>
+							            </h:outputText>-->
 							 			
 							 			<h:outputLabel for="telefone" value="Telefone:"/>                    
 							            <p:inputText id="telefone" value="#{cliente.cliente.telefone}" required="true" label="Telefone"/>
 							            <p:message for="telefone" />
-							            <h:outputText value="#{cliente.cliente.telefone}" />
+							            <!--<h:outputText value="#{cliente.cliente.telefone}" />-->
 							            
 							            <h:outputLabel for="celular" value="Celular:" />                    
 							            <p:inputText id="celular" value="#{cliente.cliente.celular}" required="true" label="Celular"/>
 							            <p:message for="celular" />
-							            <h:outputText value="#{cliente.cliente.celular}" />
+							            <!--<h:outputText value="#{cliente.cliente.celular}" />-->
 							            
 							            <h:outputLabel for="senha" value="Senha:" />
 					            		<p:password id="senha" value="#{cliente.cliente.senha}" required="true" label="Senha" size="20" maxlength="15" redisplay="true" />
@@ -107,43 +107,44 @@
 							        	<p:inputText id="cep" value="#{cliente.cliente.endereco.cep}" validatorMessage="O valor informado não obedece ao padrão definido">
     										<f:validateRegex pattern="(^[0-9]{2}\.?[0-9]{3}{1}[0-9]{3})" />
   										</p:inputText>
-  										<h:outputText value="#{cliente.cliente.endereco.cep}"/>
+  										<!--<h:outputText value="#{cliente.cliente.endereco.cep}"/>-->
   										
   										<h:commandButton value="Pesquisar" action="#{cliente.cliente.endereco.buscarCep}" >
-  											<f:ajax render="@form" execute="cep logradouro bairro cidade estado" />
+  											<f:ajax render="@form" execute="grid" />
   										</h:commandButton>
   										
   										
-  										<h:outputLabel for="logradouro" value="Endereço:" />                    
-							            <p:inputText id="logradouro" value="#{cliente.cliente.endereco.logradouro}" size="40"required="true" label="Endereço"/>
+  										<h:outputLabel for="logradouro" value="Endereço:" />
+  										<p:inputText id="logradouro" value="#{cliente.cliente.endereco.logradouro}" size="40" required="false" label="Endereço" />
 							            <p:message for="logradouro" />
-							            <h:outputText value="#{cliente.cliente.endereco.logradouro}" />
+							            
+							            <!--<h:outputText value="#{cliente.cliente.endereco.logradouro}" />-->
 							            
 							            <h:outputLabel for="numero" value="Numero: " />                    
-							            <p:inputText id="numero" value="#{cliente.cliente.endereco.numero}" required="true" label="Numero"/>
+							            <p:inputText id="numero" value="#{cliente.cliente.endereco.numero}" required="false" label="Numero"/>
 							            <p:message for="numero" />
-							            <h:outputText value="#{cliente.cliente.endereco.numero}" />
+							           <!-- <h:outputText value="#{cliente.cliente.endereco.numero}" />-->
 							            
 							            <h:outputLabel for="complemento" value="Complemento: " />                    
 							            <p:inputText id="complemento" value="#{cliente.cliente.endereco.complemento}" required="false" label="Complemento"/>
 							            <p:message for="complemento" />
-							            <h:outputText value="#{cliente.cliente.endereco.complemento}" />
+							            <!--<h:outputText value="#{cliente.cliente.endereco.complemento}" />-->
 							            
 							            
 							            <h:outputLabel for="bairro" value="Bairro: " />  
 							            <p:inputText id="bairro" value="#{cliente.cliente.endereco.bairro}" required="false" label="Bairro"/>
 							            <p:message for="bairro" />
-							            <h:outputText value="#{cliente.cliente.endereco.bairro}" />
+							            <!--<h:outputText value="#{cliente.cliente.endereco.bairro}" />-->
 							            
 							            <h:outputLabel for="cidade" value="Cidade: " />  
 							            <p:inputText id="cidade" value="#{cliente.cliente.endereco.cidade}" required="false" label="Cidade"/>
 							            <p:message for="cidade" />
-							            <h:outputText value="#{cliente.cliente.endereco.cidade}" />
+							            <!--<h:outputText value="#{cliente.cliente.endereco.cidade}" />-->
 							            
 							            <h:outputLabel for="estado" value="Estado: " />  
 							            <p:inputText id="estado" value="#{cliente.cliente.endereco.estado}" required="false" label="Estado"/>
 							            <p:message for="estado" />
-							            <h:outputText value="#{cliente.cliente.endereco.estado}" />
+							            <!--<h:outputText value="#{cliente.cliente.endereco.estado}" />-->
 							            
 							        </h:panelGrid>
 							        

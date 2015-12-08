@@ -3,6 +3,8 @@ package br.com.calceus.modelo;
 import java.util.Date;
 import java.util.List;
 
+import br.com.calceus.DAO.PromocaoDAO;
+
 public class Promocao {
  
 	private int idPromocao;
@@ -34,7 +36,9 @@ public class Promocao {
 	}
 	 
 	public double verificarPromocao(int idProduto) {
-		return 0;
+		PromocaoDAO dao = new PromocaoDAO();
+		
+		return dao.verificaPromocao(idProduto);
 	}
 	 
 	public List<Promocao> consultarPromocoes() {

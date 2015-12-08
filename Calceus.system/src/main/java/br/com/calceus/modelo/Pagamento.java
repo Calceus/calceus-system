@@ -14,9 +14,10 @@ public class Pagamento {
 	private String prazo;
 	private double desconto;
 	private char situacao;
-	public Pagamento(int idPagamento, int idPedido, Calendar vencimento, int idFormaPagamento, String descricao,
+	
+	public Pagamento(int idPedido, Calendar vencimento, int idFormaPagamento, String descricao,
 			String prazo, double desconto, char situacao) {
-		this.idPagamento = idPagamento;
+		
 		this.idPedido = idPedido;
 		this.vencimento = vencimento;
 		this.idFormaPagamento = idFormaPagamento;
@@ -24,6 +25,9 @@ public class Pagamento {
 		this.prazo = prazo;
 		this.desconto = desconto;
 		this.situacao = situacao;
+	}
+	public Pagamento() {
+		// TODO Auto-generated constructor stub
 	}
 	public int getIdPagamento() {
 		return idPagamento;
@@ -48,6 +52,10 @@ public class Pagamento {
 	}
 	public char getSituacao() {
 		return situacao;
+	}
+	public boolean fazerPagamento() {
+		
+		return true;
 	}
 	
 	

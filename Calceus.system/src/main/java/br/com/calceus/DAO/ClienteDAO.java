@@ -34,7 +34,8 @@ public class ClienteDAO {
 				pps.setString(4, cliente.getCpf());
 				pps.setString(5, cliente.getSexo());
 				pps.setDate(6, new java.sql.Date(cliente.getData().getTime()));
-//				pps.setDate(6, new java.sql.Date(cliente.getDataNascimento().getTimeInMillis()));
+				// pps.setDate(6, new
+				// java.sql.Date(cliente.getDataNascimento().getTimeInMillis()));
 				pps.setString(7, cliente.getTelefone());
 				pps.setString(8, cliente.getCelular());
 				pps.setString(9, cliente.getEmail());
@@ -42,7 +43,7 @@ public class ClienteDAO {
 				pps.setString(11, cliente.getSenha());
 
 				pps.execute();
-				
+
 				ResultSet rs = pps.getGeneratedKeys();
 				int chave = 0;
 				while (rs.next()) {
@@ -163,44 +164,88 @@ public class ClienteDAO {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		ClienteDAO dao = new ClienteDAO();
-//
-//		Cliente c = new Cliente();
-//		c.setNome("Laercio");
-//		c.setCpf("2345678900");
-//		c.setEmail("laercio_ferraci@yahoo.com.br");
-//		c.setCelular("11987654321");
-//		c.setTelefone("1137896060");
-//		c.setSenha("heineken");
-//
-//		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
-//		String dateInString = "13/10/1985";
-//		Date date = null;
-//		try {
-//			date = sdf.parse(dateInString);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		Calendar dataNascimento = Calendar.getInstance();
-//		dataNascimento.setTime(date);
-//		c.setDataNascimento(dataNascimento);
-//		c.getEndereco().setIdEndereco(1);
-//
-//		System.out.println("Cadastrando cliente: " + c.toString());
-//		int chave = dao.adicionaCliente(c);
-//		System.out.println("consultando cliente: " + chave);
-//		c.setEmail("laercio_ferracini@yahoo.com.br");
-//		if (dao.alterarCliente(c))
-//			System.out.println("Alterando cliente: " + dao.consultarCliente(chave).toString());
-//		else
-//			System.out.println("Errors fuck");
-//
-//		if (dao.excluirCliente(chave)) {
-//			System.out.println("Excluindo cliente");
-//		}
-//	}
+	public boolean verificarCliente(Cliente cliente) {
+		boolean resultado = false;
+		try (Connection conexao = new ConnectionPool().getConnection()) {
+			String sql = "SELECT email, senha FROM cliente WHERE email like ? AND senha like ?";
+
+			try (PreparedStatement pps = conexao.prepareStatement(sql)) {
+
+				pps.setString(1, cliente.getEmail());
+				pps.setString(2, cliente.getSenha());
+
+				ResultSet rs = pps.executeQuery();
+				if (!rs.next()) {
+					throw new Exception(
+							"Não foi encontrado nenhum resultado com os dados fornecidos:" + cliente.getEmail());
+				}
+				String email = "";
+				String senha = "";
+				while (rs.next()) {
+					email = rs.getString("email");
+					senha = rs.getString("senha");
+					if (cliente.getEmail().equals(email) && cliente.getSenha().equals(senha)) {
+						resultado = true;
+					} else {
+						resultado = false;
+					}
+				}
+				rs.close();
+
+				return resultado;
+			} catch (SQLException e) {
+				System.out.println("Erro ao executar operação: " + e.getMessage());
+				return resultado;
+			} catch (Exception e) {
+				System.out.println("Erro ao executar operação: " + e.getMessage());
+				return resultado;
+			}
+
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return resultado;
+		}
+	}
+
+	// public static void main(String[] args) {
+	// ClienteDAO dao = new ClienteDAO();
+	//
+	// Cliente c = new Cliente();
+	// c.setNome("Laercio");
+	// c.setCpf("2345678900");
+	// c.setEmail("laercio_ferraci@yahoo.com.br");
+	// c.setCelular("11987654321");
+	// c.setTelefone("1137896060");
+	// c.setSenha("heineken");
+	//
+	// SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+	// String dateInString = "13/10/1985";
+	// Date date = null;
+	// try {
+	// date = sdf.parse(dateInString);
+	// } catch (ParseException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	//
+	// Calendar dataNascimento = Calendar.getInstance();
+	// dataNascimento.setTime(date);
+	// c.setDataNascimento(dataNascimento);
+	// c.getEndereco().setIdEndereco(1);
+	//
+	// System.out.println("Cadastrando cliente: " + c.toString());
+	// int chave = dao.adicionaCliente(c);
+	// System.out.println("consultando cliente: " + chave);
+	// c.setEmail("laercio_ferracini@yahoo.com.br");
+	// if (dao.alterarCliente(c))
+	// System.out.println("Alterando cliente: " +
+	// dao.consultarCliente(chave).toString());
+	// else
+	// System.out.println("Errors fuck");
+	//
+	// if (dao.excluirCliente(chave)) {
+	// System.out.println("Excluindo cliente");
+	// }
+	// }
 
 }

@@ -172,4 +172,9 @@ public class Cliente {
 		
 	}
 
+	public boolean verificarCliente(Cliente cliente) {
+		ClienteDAO dao = new ClienteDAO();
+		return dao.verificarCliente(cliente);
+	}
+
 }

@@ -3,7 +3,10 @@ package br.com.calceus.modelo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import br.com.calceus.DAO.PedidoDAO;
 
 public class Pedido {
 
@@ -11,15 +14,16 @@ public class Pedido {
 	private int idPedido;
 	private Calendar dataPedido;
 	private double valorTotal;
-	private int idCliente;
-	private int posicaoLivre;;
-	private static Pedido[] listaDePedidos;
-
+	private Cliente cliente;
+	private int idPagamento;
+	private Date dataEntrega;
+	private double frete;
+	
+	private int prazoEntrega;
+	
 	// Tabela ItemPedido
-	private int idItemPedido;
-	private int idProduto;
-	private List<ItemPedido> itens;
-
+	private ItemPedido itemPedido;
+	private List<ItemPedido> listaItens;
 
 	public Pedido() {
 	}
@@ -35,26 +39,57 @@ public class Pedido {
 	public double getValorTotal() {
 		return valorTotal;
 	}
-
-	public int getIdCliente() {
-		return idCliente;
+	
+	public int getIdPagamento() {
+		return idPagamento;
 	}
 
-	public int getIdItemPedido() {
-		return idItemPedido;
+	public void setIdPagamento(int idPagamento) {
+		this.idPagamento = idPagamento;
 	}
 
-
-	public void adicionaPedido(Pedido novo) {
-
-		Pedido.listaDePedidos[posicaoLivre] = novo;
-		this.posicaoLivre++;
+	public Date getDataEntrega() {
+		return dataEntrega;
 	}
 
-	public static Pedido consultaPedido(int numero) {
-		Pedido achado = listaDePedidos[numero];
-		/// System.out.println();;
-		return achado;
+	public void setDataEntrega(Date dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
+
+	public double getFrete() {
+		return frete;
+	}
+
+	public void setFrete(double frete) {
+		this.frete = frete;
+	}
+
+	public int getPrazoEntrega() {
+		return prazoEntrega;
+	}
+
+	public void setPrazoEntrega(int prazoEntrega) {
+		this.prazoEntrega = prazoEntrega;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public ItemPedido getItemPedido() {
+		return itemPedido;
+	}
+
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public void setDataPedido(Calendar dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 	@Override
@@ -63,20 +98,38 @@ public class Pedido {
 		SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
 
 		return "Pedido " + this.getIdPedido() + "\nData " + dataFormatada.format(getDataPedido().getTime())
-				+ "\nValor: " + this.getValorTotal() + "\nID Cliente " + this.getIdCliente();
+				+ "\nValor: " + this.getValorTotal() + "\nID Cliente " + this.getCliente().getIdCliente();
 	}
 
 	public void adicionaItem(Produto p) {
-		getItens().add(new ItemPedido(p));
+		getListaItens().add(new ItemPedido(p));
 	}
 	
-	public List<ItemPedido> getItens() {
-		if(itens != null){
-			return itens;
+	public List<ItemPedido> getListaItens() {
+		if(listaItens != null){
+			return listaItens;
 		}else{
-			return itens = new ArrayList<ItemPedido>();
+			return listaItens = new ArrayList<ItemPedido>();
 		}
 		
 	}
 
+	public List<Pedido> consultarPedidos(int idCliente) {
+		PedidoDAO dao = new PedidoDAO();
+		return dao.consultarPedidos(idCliente);
+	}
+
+	public Pedido listarPedido(int numeroPedido) {
+		ItemPedido itemPedido = new ItemPedido();
+		Pedido p = new Pedido();
+		itemPedido.listarItensPedido(numeroPedido);
+		return p;
+	}
+
+	public boolean confirmarPedido(Pedido pedido) {
+		PedidoDAO dao = new PedidoDAO();
+		return dao.confirmarPedido(pedido);
+		
+	}
+	
 }

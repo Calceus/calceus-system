@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 
 import br.com.calceus.ctrl.ManterCadastroClienteCTRL;
 import br.com.calceus.modelo.Cliente;
+import br.com.calceus.modelo.Email;
 
 @ManagedBean(name = "cliente")
 @RequestScoped
@@ -49,6 +50,8 @@ public class ClienteBean {
 			ManterCadastroClienteCTRL ctrl = new ManterCadastroClienteCTRL();
 //			System.out.println(getCliente().getNome());
 			if (ctrl.cadastrarCliente(this.getCliente())) {
+				Email email = new Email();
+				email.enviarEmail(this.getCliente().getEmail(), this.getCliente().getNome());
 				return "sucesso";
 			} else {
 				context.addMessage(null,

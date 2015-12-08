@@ -20,8 +20,7 @@ public class Produto {
 
 	}
 
-	public Produto(int idProduto, String nomeProduto, int quantidade,
-			double valor) {
+	public Produto(int idProduto, String nomeProduto, int quantidade, double valor) {
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
 		this.quantidade = quantidade;
@@ -29,9 +28,8 @@ public class Produto {
 
 	}
 
-	public Produto(int idProduto, String nomeProduto, int idCategoria,
-			int idFornecedor, int idItemProduto, int quantidade, double valor,
-			Marca marca) {
+	public Produto(int idProduto, String nomeProduto, int idCategoria, int idFornecedor, int idItemProduto,
+			int quantidade, double valor, Marca marca) {
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
 		this.idCategoria = idCategoria;
@@ -87,8 +85,7 @@ public class Produto {
 		return false;
 	}
 
-	public List<Produto> consultarProdutosEmPromocao(
-			List<Produto> produtosEmPromocao) {
+	public List<Produto> consultarProdutosEmPromocao(List<Produto> produtosEmPromocao) {
 		return null;
 	}
 
@@ -140,19 +137,24 @@ public class Produto {
 	}
 
 	public void setGenero(long genero) {
-		this.genero = (char) genero; 
-		
+		this.genero = (char) genero;
+
 	}
 
 	public void setIdItemProduto(int idItemProduto) {
-		this.idItemProduto = idItemProduto; 
-		
+		this.idItemProduto = idItemProduto;
+
 	}
 
 	public Produto consultarProduto(int idProduto2) {
 		ProdutoDAO dao = new ProdutoDAO();
-		
+
 		return dao.consultarProduto(idProduto2);
 	}
 
+	public Produto buscarProduto(int idProduto) {
+		ProdutoDAO dao = new ProdutoDAO();
+
+		return dao.buscarProduto(idProduto);
+	}
 }
