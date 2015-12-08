@@ -78,6 +78,6 @@ public class Email {
 	public void enviarEmail(String destinatario, String nome) {
 		Mailling m = new Mailling("smtp.mail.com", "587");
 
-		m.sendMail("calceus@mail.com", destinatario, "Bem vindo "+nome, "Caro(a) "+nome+" seu cadastro foi realizado com sucesso");
+		m.sendMail("calceus@mail.com", destinatario, "Bem vindo "+nome, "Caro(a) "+nome+" seu cadastro foi realizado com sucesso\nAcesse: " +"http://www.calceusfootwear.com\n\nEquipe Calceus");
 	}
 }
