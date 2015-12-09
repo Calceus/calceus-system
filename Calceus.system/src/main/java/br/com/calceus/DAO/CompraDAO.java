@@ -40,7 +40,7 @@ public class CompraDAO {
 		try(Connection conexao = new ConnectionPool().getConnection()){
 			try(PreparedStatement pps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 				pps.setInt(1, notaFiscal);
-				pps.setInt(2, 1);
+				pps.setInt(2, 1);//buscar Id do funcionario logado
 				pps.execute();
 				ResultSet rs = pps.getGeneratedKeys();
 				while(rs.next()){
