@@ -85,7 +85,7 @@ public class FornecedorDAO {
 
 			try (PreparedStatement consulta = conexao.prepareStatement(sql)) {
 
-				resultado = consulta.executeQuery(sql);
+				resultado = consulta.executeQuery();
 				while (resultado.next()) {
 					fornecedor = new Fornecedor(resultado.getInt("idFornecedor"), resultado.getString("razaoSocial"),
 							resultado.getString("cnpj"), resultado.getInt("telefone"), resultado.getString("site"),
@@ -97,17 +97,43 @@ public class FornecedorDAO {
 				return fornecedores;
 			} catch (Exception e) {
 				System.out.println("Erro ao buscar codigo de fornecedor. Mensagem: " + e.getMessage());
+				return null;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+
+		
+	}
+
+	public String buscafornecedor(int idFornecedor) {
+		String razaoSocial = "";
+		try (Connection conexao = new ConnectionPool().getConnection()) {
+
+			String sql = "SELECT * FROM fornecedor WHERE idFornecedor = ?";
+//			System.out.println(sql + idFornecedor);
+			try (PreparedStatement consulta = conexao.prepareStatement(sql)) {
+				
+				consulta.setInt(1, idFornecedor);
+				ResultSet resultado = null;
+				resultado = consulta.executeQuery();
+				
+				while (resultado.next()) {
+					razaoSocial = resultado.getString("razaoSocial");
+				}
+
+				return razaoSocial;
+			} catch (Exception e) {
+				System.out.println("Erro ao buscar codigo de fornecedor. Mensagem: " + e.getMessage());
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-		return null;
-	}
-
-	public Fornecedor buscafornecedor(int valor) {
-		return null;
+		return razaoSocial;
+		
 	}
 
 	public List<Fornecedor> listarFornecedores() {

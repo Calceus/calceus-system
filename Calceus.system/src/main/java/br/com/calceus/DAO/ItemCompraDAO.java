@@ -7,7 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import br.com.calceus.conexao.ConnectionPool;
+import br.com.calceus.modelo.ItemCompra;
 import br.com.calceus.modelo.Produto;
 
 public class ItemCompraDAO {
@@ -58,5 +61,26 @@ public class ItemCompraDAO {
 		}
 
 		return idCompra;
+	}
+	public int cadastrarItemCompra(ItemCompra i) {
+		System.out.println(i.getIdCompra());
+		String sql = "INSERT INTO itemcompra (idCompra, numSequencial, qtdProduto) VALUES (?,?,?)";
+		int id = 0;
+		try(Connection conexao = new ConnectionPool().getConnection()){
+			try(PreparedStatement pps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+				pps.setInt(1, i.getIdCompra());
+				pps.setInt(2, i.getNumSequencial());
+				pps.setInt(3, i.getQuantidade());
+				pps.execute();
+				ResultSet rs = pps.getGeneratedKeys();
+				while(rs.next()){
+					id = rs.getInt(1);
+				}
+				return id;
+			}
+		}catch (SQLException e) {
+			System.out.println("Erro ao inserir ItemdeCompra: "+e.getMessage());
+			return id;
+		}
 	}
 }

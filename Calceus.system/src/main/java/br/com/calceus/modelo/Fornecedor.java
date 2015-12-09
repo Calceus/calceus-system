@@ -17,8 +17,10 @@ public class Fornecedor {
 	private FornecedorDAO dao;
 	
 	public Fornecedor() {
-		
+		// TODO Auto-generated constructor stub
 	}
+	
+	
 	public Fornecedor(String razaoSocial, String cnpj, int telefone, String site, String obs) {
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
@@ -39,11 +41,18 @@ public class Fornecedor {
 	public int getIdFornecedor() {
 		return idFornecedor;
 	}
+	public void setIdFornecedor(int idFornecedor) {
+		this.idFornecedor = idFornecedor;
+	}
 	public String getCnpj() {
 		return cnpj;
 	}
 	public String getRazaoSocial() {
 		return razaoSocial;
+	}
+	
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
 	}
 	public int getTelefone(){
 		return telefone;
@@ -82,5 +91,9 @@ public class Fornecedor {
 	public boolean excluir(int cod) {
 		dao = new FornecedorDAO();
 		return dao.excluir(cod);
+	}
+	public String consultarFornecedor(int idFornecedor){
+		dao = new FornecedorDAO();
+		return dao.buscafornecedor(idFornecedor);
 	}
 }

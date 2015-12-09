@@ -30,5 +30,13 @@ public class ProdutoCTRL {
 		Produto produto = new Produto();
 		return produto.consultarProduto(idProduto);
 	}
+	public Produto listarProduto(String p) {
+		Produto produto = new Produto();	
+		return produto.consultarProduto(p);
+	}
+	public List<Produto> listaProdutos() {
+		Produto produto = new Produto();
+		return produto.consultarProdutos();
+	}
 	
 }

@@ -28,8 +28,14 @@ public class Categoria {
 	public int getIdCategoria() {
 		return idCategoria;
 	}
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
+	}
 	public String getCategoria() {
 		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -49,5 +55,11 @@ public class Categoria {
 		
 		return dao.salvar(c);
 	}
+
+	public String consultarCategoria(int ids) {
+		dao = new CategoriaDAO();
+		return dao.consultarCategoria(ids);
+	}
+
 	
 }

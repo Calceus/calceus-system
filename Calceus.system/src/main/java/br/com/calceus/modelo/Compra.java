@@ -10,7 +10,7 @@ public class Compra {
 	private int numPedido;
 	private int idFuncionario;
 	private ItemCompra itemCompra;
-	
+
 	private CompraDAO dao;
 
 	public Compra() {
@@ -41,12 +41,13 @@ public class Compra {
 		this.idFuncionario = idFuncionario;
 	}
 
-	public CompraDAO getDao() {
-		return dao;
-	}
-
-	public void setDao(CompraDAO dao) {
-		this.dao = dao;
+	public ItemCompra getItemCompra() {
+		if(itemCompra !=  null){
+			return itemCompra;
+		}else{
+			return itemCompra = new ItemCompra();
+		}
+		
 	}
 
 	public List<Produto> consultarProdutosNotaFiscal(int notaFiscal) {
@@ -56,10 +57,14 @@ public class Compra {
 
 	}
 
-
 	public boolean consultarNotaFiscal(int notaFiscal) {
 		dao = new CompraDAO();
 		return dao.consultarNotaFiscal(notaFiscal);
+	}
+
+	public int cadastrarNotaFiscal(int notaFiscal) {
+		dao = new CompraDAO();
+		return dao.cadastrarProduto(notaFiscal);
 	}
 
 }

@@ -10,10 +10,13 @@ public class Produto {
 	private String nomeProduto;
 	private int quantidade;
 	private double valor;
-	private int idCategoria;
-	private int idFornecedor;
+	private Categoria categoria;
+	
+	private Fornecedor fornecedor;
+	
 	private int idItemProduto;
 	private Marca marca;
+	
 	private char genero;
 
 	public Produto() {
@@ -28,16 +31,14 @@ public class Produto {
 
 	}
 
-	public Produto(int idProduto, String nomeProduto, int idCategoria, int idFornecedor, int idItemProduto,
-			int quantidade, double valor, Marca marca) {
+	public Produto(int idProduto, String nomeProduto, int idItemProduto,
+			int quantidade, double valor) {
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
-		this.idCategoria = idCategoria;
-		this.idFornecedor = idFornecedor;
+		
 		this.idItemProduto = idItemProduto;
 		this.quantidade = quantidade;
 		this.valor = valor;
-		this.marca = marca;
 
 	}
 
@@ -46,8 +47,12 @@ public class Produto {
 	}
 
 	public Marca getMarca() {
-		return marca;
+		if(marca != null){
+			return marca;
+		}else
+			return marca = new Marca();
 	}
+
 
 	public int getIdProduto() {
 		return idProduto;
@@ -57,8 +62,11 @@ public class Produto {
 		return nomeProduto;
 	}
 
-	public int getIdFornecedor() {
-		return idFornecedor;
+	public Fornecedor getFornecedor() {
+		if(fornecedor != null)
+			return fornecedor;
+		else
+			return fornecedor = new Fornecedor();
 	}
 
 	public char getGenero() {
@@ -73,8 +81,11 @@ public class Produto {
 		return valor;
 	}
 
-	public int getIdCategoria() {
-		return idCategoria;
+	public Categoria getCategoria() {
+		if(categoria != null)
+			return categoria;
+		else
+			return categoria = new Categoria();
 	}
 
 	public int getIdItemProduto() {
@@ -94,7 +105,25 @@ public class Produto {
 	}
 
 	public List<Produto> consultarProdutos() {
-		return null;
+		ProdutoDAO dao = new ProdutoDAO();
+		List<Produto> listaProdutos = dao.listarProdutos();
+		
+		for(int i = 0; i<listaProdutos.size(); i++){
+			
+			int ids = listaProdutos.get(i).getFornecedor().getIdFornecedor();
+			listaProdutos.get(i).getFornecedor().setRazaoSocial(getFornecedor().consultarFornecedor(ids));
+			
+//			System.out.println(listaProdutos.get(i).getFornecedor().getRazaoSocial());
+			
+			ids = listaProdutos.get(i).getMarca().getIdMarca();
+			listaProdutos.get(i).getMarca().setMarca(getMarca().consultarMarca(ids));
+			
+			ids = listaProdutos.get(i).getCategoria().getIdCategoria();
+			listaProdutos.get(i).getCategoria().setCategoria(getCategoria().consultarCategoria(ids));
+			
+		}
+		
+		return listaProdutos;
 	}
 
 	public Produto alterarProduto() {
@@ -109,19 +138,13 @@ public class Produto {
 		return false;
 	}
 
-	public void setIdFornecedor(int idFornecedor) {
-		this.idFornecedor = idFornecedor;
-	}
-
+	
 	public void setIdProduto(int idFornecedor) {
 		this.idProduto = idFornecedor;
 
 	}
 
-	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = idCategoria;
-
-	}
+	
 
 	public void setNomeProduto(String nomeProduto) {
 		this.nomeProduto = nomeProduto;
@@ -145,6 +168,11 @@ public class Produto {
 		this.idItemProduto = idItemProduto;
 
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getNomeProduto()+getQuantidade()+getValor();
+	}
 
 	public Produto consultarProduto(int idProduto2) {
 		ProdutoDAO dao = new ProdutoDAO();
@@ -156,5 +184,15 @@ public class Produto {
 		ProdutoDAO dao = new ProdutoDAO();
 
 		return dao.buscarProduto(idProduto);
+	}
+
+	public Produto consultarProduto(String produto) {
+		
+		return null;
+	}
+
+	public boolean cadastrarProduto(Produto produto) {
+		ProdutoDAO dao = new ProdutoDAO();
+		return dao.cadastrarProduto(produto);
 	}
 }

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.calceus.conexao.ConnectionPool;
 import br.com.calceus.conexao.GerenciadorDeConexoes;
 import br.com.calceus.modelo.Categoria;
 
@@ -64,5 +65,23 @@ public class CategoriaDAO {
 			}
 		}
 		return categorias;
+	}
+	public String consultarCategoria(int ids) {
+		String categoria = "";
+		String sql = "SELECT categoria FROM categoria WHERE idCategoria = ?";
+		try(Connection conexao = new ConnectionPool().getConnection()) {
+			try(PreparedStatement pps = conexao.prepareStatement(sql)){
+				pps.setInt(1, ids);
+				ResultSet resultado = pps.executeQuery();
+				while(resultado.next()){
+					categoria = resultado.getString("categoria");
+					
+				}
+			}
+			return categoria;			
+		} catch (SQLException e) {
+			System.out.println("Erro na pesquisa de categorias: "+e.getMessage());
+			return categoria;
+		}
 	}
 }

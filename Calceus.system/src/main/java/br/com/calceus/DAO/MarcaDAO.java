@@ -59,4 +59,31 @@ public class MarcaDAO {
 		}
 	}
 
+	public String consultarMarca(int ids) {
+		String sql = "SELECT marca FROM Marca WHERE idMarca";
+		String marca = "";
+		try (Connection conn = new ConnectionPool().getConnection()) {
+           
+			try (Statement st = conn.createStatement()) {
+				try (ResultSet rs = st.executeQuery(sql)) {
+					
+					while (rs.next()) {
+
+						marca = rs.getString("marca");
+					}
+				}
+
+				return marca;
+			} catch (SQLException e) {
+				System.out.println("Erro na pesquisa de marcas: "
+						+ e.getMessage());
+				return marca;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return marca;
+		}
+	}
+
 }

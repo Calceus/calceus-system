@@ -66,4 +66,9 @@ public class Marca {
 		System.out.println("Listando:" + m.listar());
 	}
 
+	public String consultarMarca(int ids) {
+		dao = new MarcaDAO();
+		return dao.consultarMarca(ids);
+	}
+
 }
