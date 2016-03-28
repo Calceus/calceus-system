@@ -141,20 +141,20 @@ public class Cliente {
 		this.data = data;
 	}
 
-	private void dateToCalendar(Date data) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(data);
-		setDataNascimento(cal);
-	}
+//	private void dateToCalendar(Date data) {
+//		Calendar cal = Calendar.getInstance();
+//		cal.setTime(data);
+//		setDataNascimento(cal);
+//	}
 	
 	public Date getData() {
 		return data;
 	}
 	
-	private void calendarToDate() {
-		setData(getDataNascimento().getTime());
-		
-	}
+//	private void calendarToDate() {
+//		setData(getDataNascimento().getTime());
+//		
+//	}
 
 	@Override
 	public String toString() {

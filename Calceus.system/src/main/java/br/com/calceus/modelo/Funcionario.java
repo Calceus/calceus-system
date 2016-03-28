@@ -1,6 +1,5 @@
 package br.com.calceus.modelo;
 
-import java.sql.ResultSet;
 import java.util.Calendar;
 
 public class Funcionario {

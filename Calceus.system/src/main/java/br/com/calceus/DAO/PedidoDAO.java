@@ -54,7 +54,9 @@ public class PedidoDAO {
 		boolean resultado = false;
 		try(Connection conexao = new ConnectionPool().getConnection()){
 			String sql = "INSERT INTO pedido (";
-			
+			//TODO TERMINAR A QUERY
+			PreparedStatement stm = conexao.prepareStatement(sql);
+			stm.setInt(1, pedido.getIdPedido());
 			return resultado;
 		}catch (SQLException e) {
 			e.printStackTrace();

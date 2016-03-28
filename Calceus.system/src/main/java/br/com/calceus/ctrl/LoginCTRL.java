@@ -1,11 +1,10 @@
 package br.com.calceus.ctrl;
 
-import br.com.calceus.modelo.Funcionario;
 import br.com.calceus.modelo.Login;
 
 public class LoginCTRL {
 
-	private Funcionario funcionario;
+//	private Funcionario funcionario;
 
 	public LoginCTRL() {
 		// TODO Auto-generated constructor stub

@@ -17,6 +17,7 @@ public class ComprarProdutoCTRL {
 	public boolean cadastrarNotaFiscal (int notaFiscal, List<ItemCompra> lista){
 		compra = new Compra();
 		int idCompra = compra.cadastrarNotaFiscal(notaFiscal);
+		
 		if(idCompra != 0){
 			for (int i = 0; i < lista.size(); i++) {
 				lista.get(i).setIdCompra(idCompra);

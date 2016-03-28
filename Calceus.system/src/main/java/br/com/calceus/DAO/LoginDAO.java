@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import br.com.calceus.conexao.ConnectionPool;
-import br.com.calceus.modelo.Cliente;
 import br.com.calceus.modelo.Login;
 
 public class LoginDAO {

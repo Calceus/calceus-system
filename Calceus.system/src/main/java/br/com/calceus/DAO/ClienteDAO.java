@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import com.mysql.jdbc.Statement;
@@ -20,7 +17,7 @@ public class ClienteDAO {
 	public int cadastrarCliente(Cliente cliente) {
 
 		if (cliente == null) {
-			System.out.println("O valor passado não pode ser nulo");
+			System.out.println("O valor passado nï¿½o pode ser nulo");
 		}
 		try (Connection conexao = new ConnectionPool().getConnection()) {
 			String sql = "INSERT INTO Cliente(tipoCliente, status, nome, cpf, sexo, dataNascimento, telefone, celular, email, idEndereco, senha)"
@@ -64,7 +61,7 @@ public class ClienteDAO {
 
 	public boolean alterarCliente(Cliente cliente) {
 		if (cliente == null) {
-			System.out.println("O valor passado não pode ser nulo");
+			System.out.println("O valor passado nï¿½o pode ser nulo");
 		}
 		try (Connection conexao = new ConnectionPool().getConnection()) {
 			String sql = "UPDATE Cliente SET tipoCliente = ?, status = ?, nome = ?, cpf = ?, sexo = ?, dataNascimento = ?, telefone = ?, celular = ?, email = ?, idEndereco = ? WHERE idCliente = ?";
@@ -109,7 +106,7 @@ public class ClienteDAO {
 				pps.setInt(1, idCliente);
 				ResultSet rs = pps.executeQuery();
 				if (!rs.next()) {
-					throw new Exception("Não foi encontrado nenhum resultado para o ID:" + idCliente);
+					throw new Exception("Nï¿½o foi encontrado nenhum resultado para o ID:" + idCliente);
 				}
 				cliente = new Cliente();
 
@@ -135,10 +132,10 @@ public class ClienteDAO {
 				return cliente;
 
 			} catch (SQLException e) {
-				System.out.println("Erro ao executar operação: " + e.getMessage());
+				System.out.println("Erro ao executar operaï¿½ï¿½o: " + e.getMessage());
 				return null;
 			} catch (Exception e) {
-				System.out.println("Erro ao executar operação: " + e.getMessage());
+				System.out.println("Erro ao executar operaï¿½ï¿½o: " + e.getMessage());
 				return null;
 			}
 
@@ -177,7 +174,7 @@ public class ClienteDAO {
 				ResultSet rs = pps.executeQuery();
 				if (!rs.next()) {
 					throw new Exception(
-							"Não foi encontrado nenhum resultado com os dados fornecidos:" + cliente.getEmail());
+							"Nï¿½o foi encontrado nenhum resultado com os dados fornecidos:" + cliente.getEmail());
 				}
 				String email = "";
 				String senha = "";
@@ -194,10 +191,10 @@ public class ClienteDAO {
 
 				return resultado;
 			} catch (SQLException e) {
-				System.out.println("Erro ao executar operação: " + e.getMessage());
+				System.out.println("Erro ao executar operaï¿½ï¿½o: " + e.getMessage());
 				return resultado;
 			} catch (Exception e) {
-				System.out.println("Erro ao executar operação: " + e.getMessage());
+				System.out.println("Erro ao executar operaï¿½ï¿½o: " + e.getMessage());
 				return resultado;
 			}
 

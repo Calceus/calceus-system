@@ -1,7 +1,5 @@
 package br.com.calceus.ctrl;
 
-import java.util.Calendar;
-
 import br.com.calceus.modelo.Cliente;
 import br.com.calceus.modelo.Endereco;
 

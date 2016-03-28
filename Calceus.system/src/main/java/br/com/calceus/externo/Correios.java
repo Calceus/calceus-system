@@ -65,7 +65,7 @@ public class Correios {
 		parameters.setProperty("StrRetorno", StrRetorno);
 
 		// o iterador, para criar a URL
-		Iterator i = parameters.keySet().iterator();
+		Iterator<Object> i = parameters.keySet().iterator();
 		// o contador
 		int counter = 0;
 
@@ -78,7 +78,7 @@ public class Correios {
 			String value = parameters.getProperty(name);
 
 			// adiciona com um conector (? ou &)
-			// o primeiro é ?, depois são &
+			// o primeiro ï¿½ ?, depois sï¿½o &
 			urlString += (++counter == 1 ? "?" : "&") + name + "=" + value;
 
 		}
@@ -100,7 +100,7 @@ public class Correios {
 			// conecta com a url destino
 			connection.connect();
 
-			// abre a conexão pra input
+			// abre a conexï¿½o pra input
 			BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
 			// le ate o final
@@ -111,7 +111,7 @@ public class Correios {
 			}
 			br.close();
 
-			// Prepara o XML que está em string para executar leitura por nodes
+			// Prepara o XML que estï¿½ em string para executar leitura por nodes
 			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			InputSource is = new InputSource();
 			is.setCharacterStream(new StringReader(newData.toString()));
